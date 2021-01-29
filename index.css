@@ -32,11 +32,9 @@ ul { list-style-type: none;}
 .span-color { color: var(--color1);}
 
 
-body, html {
-    font-size: 100%;
-}
 
-body{ 
+body, html{ 
+    font-size: 100%;
     width: 100vw;
     height: 100%;
     overflow-x: hidden;
@@ -303,18 +301,11 @@ body{
     }
 
     #home-hero {
-        transform: scale(0.6);
+        transform: scale(0.8);
     }
     
     .navigation--icons {
         margin-right: 2em !important;
-    }
-    .icon {
-        margin: 0 7px !important;    
-    }
-    .icon > svg {
-        width: 15px;
-        height: 15px;
     }
     #home {
         position: relative;
@@ -327,8 +318,20 @@ body{
 
 @media ( max-width: 450px ) {
 
+    .icon {
+        margin: 0 5px !important;    
+    }
+    .icon > svg {
+        width: 15px;
+        height: 15px;
+    }
+
     #home-hero {
-        transform: scale(0.5);
+        transform: scale(0.5) !important;
+    }
+    #home-nav > a,
+    #home-nav > a > span {
+        font-size: 0.4em !important;
     }
 
     .navigation {
@@ -338,7 +341,9 @@ body{
 }
 
 @media ( max-width: 390px ) {
-
+    #home-nav {
+        display: none;
+    }
     #home-hero {
         transform: scale(0.5);
     }
