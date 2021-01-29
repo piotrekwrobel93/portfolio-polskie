@@ -12,6 +12,12 @@ gsap.registerPlugin( ScrollTrigger )
 
 window.addEventListener("DOMContentLoaded", function() {
 
+    let isSmallScreen = false
+    if ( window.innerWidth < 769 ) {
+        isSmallScreen = true
+    }
+
+
     // VARIABLES
 
     let isClickedMenu = false
@@ -31,40 +37,47 @@ window.addEventListener("DOMContentLoaded", function() {
 
     //  Home page Scroll Trigger
 
-    gsap.to("#home",{
-        scrollTrigger: {
-            trigger: "#home",
-            start: "5px top",
-            end: "+=5px",
-            onEnter: () => {
-                gsap.to(window, {
-                    scrollTo: { y: 8},
-                    delay: 0,
-                    duration: 0.5
-                });
-                gsap.to("#home", {
-                    x:"100%",
-                    ease: "power3.easeInOut",
-                    duration: 0.5
-                });
+    if ( !isSmallScreen ) {
+
+        gsap.to("#home",{
+            scrollTrigger: {
+                trigger: "#home",
+                start: "5px top",
+                end: "+=5px",
+                onEnter: () => {
+                    gsap.to(window, {
+                        scrollTo: { y: 8},
+                        delay: 0,
+                        duration: 0.5
+                    });
+                    gsap.to("#home", {
+                        x:"100%",
+                        ease: "power3.easeInOut",
+                        duration: 0.5
+                    });
+                },
+                onLeaveBack: () => {
+                    gsap.to( window,{
+                        scrollTo: {y: 0},
+                        delay: 0,
+                        duration: 2
+                    }),
+                    gsap.to("#home", {
+                        x:"0%",
+                        ease: "power3.easeInOut",
+                        duration: 0.5
+                    })
+                    gsap.from("#home-hero-typo", {
+                        opacity: 0,
+                    })
+                }
             },
-            onLeaveBack: () => {
-                gsap.to( window,{
-                    scrollTo: {y: 0},
-                    delay: 0,
-                    duration: 2
-                }),
-                gsap.to("#home", {
-                    x:"0%",
-                    ease: "power3.easeInOut",
-                    duration: 0.5
-                })
-                gsap.from("#home-hero-typo", {
-                    opacity: 0,
-                })
-            }
-        },
-    })
+        })
+
+
+    }
+
+    
 
 
     /** ------------------------------------------------------------------------ */
