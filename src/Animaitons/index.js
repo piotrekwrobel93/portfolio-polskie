@@ -1,6 +1,6 @@
 
 import { $ } from '../helpers.js'
-
+import { manageTabs } from '../helpers.js'
 
 window.onbeforeunload = function () {
     window.scrollTo(0, 0);
@@ -58,7 +58,7 @@ window.addEventListener("DOMContentLoaded", function() {
         gsap.to("#home",{
             scrollTrigger: {
                 trigger: "#home",
-                start: "5px top",
+                start: "2px top",
                 end: "+=5px",
                 scrub: 1,
                 onEnter: () => {
@@ -212,6 +212,9 @@ window.addEventListener("DOMContentLoaded", function() {
         animateBurgerIcon()
     }
 
+
+
+    manageTabs()
     /** ------------------------------------------------------------------------ */
 
     // EVENT LISTENERS

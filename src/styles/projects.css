@@ -1,0 +1,229 @@
+.projects {
+    width: 100vw;
+    height: 100%;
+    min-height: 100vh;
+    position: relative;
+}
+.projects > h1 {
+    text-align: center;
+    font-size: 3em;
+    padding-top: 2em;
+}
+
+.projects-wrapper {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+
+
+.tabs {
+    position:absolute;
+    top:45%;
+    left:50%;
+    transform:translate(-50%,-45%);
+    width:50%;
+    height: 400px;
+}
+
+.tabs .tab-header {
+    display:flex;
+}
+
+.tabs .tab-header > div {
+    position:relative;
+    width:25%;
+    text-align:center;
+    padding:10px 0;
+    z-index:2;
+    font-weight:600;
+    color: #000;
+    cursor:pointer;
+    transition:all 300ms ease-in-out;
+}
+.tabs .tab-header > div.active {
+    color: #fff;
+}
+.tabs .tab-indicator {
+    position:absolute;
+    width: 25%;
+    height: 44px;
+    background:var(--color1);
+    top:0px;
+    left:0px;
+    border-radius: 5px;
+    transition:all 300ms ease-in-out;
+}
+.tabs .tab-body {
+    position:relative;
+    background:#fff;
+    height: 100%;   
+    padding:20px 0;
+    margin-top: 2em;
+    overflow:hidden;
+}
+.tabs .tab-body > div {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    opacity:0;
+    top:-100%;
+    transform:translateY(-10px);
+    transition:opacity 300ms ease-in-out,
+              transform 300ms ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+.tabs .tab-body > div.active {
+    transform:translateY(0px);
+    top: 10%;
+    opacity:1;
+}
+.tabs .body--right h1 {
+    color: var(--color1);
+    font-weight: 500;
+    font-size: 1.2em;
+    margin: 20px 0 0px 0;
+}
+.tabs .body--right p {
+    color: #333;
+    font-size:15px;
+}
+
+.tabs .tab-body > div > .body--left {
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.body--left img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.body--left > h1  {
+    margin-bottom: 10px;
+}
+
+.body--right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.body--right--wrapper {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+
+.mobile-projects {
+    display: none;
+    width: 100vw;
+    position: relative;
+    text-align: center;
+    margin-top: 2em;
+}
+
+.project-m {
+    margin-bottom: 2em;
+}
+
+.project-m > h1 {
+    text-transform: uppercase;
+    color: #333;
+
+}
+
+.details--wrapper-m {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.details-m {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* background-color: red; */
+}
+.details--section-m{
+    width: 100vw;
+    height: 100%;
+    text-align: left;
+    background-color: #111;
+    color: #fff;
+    padding: 2em 2em;
+    display: flex;
+    flex-direction: column;
+}
+
+.details-m  h1{
+    font-size: 1.2em;
+    color: var(--color1);
+    font-weight: 500;
+}
+
+.details-m  p {
+    color: #999;
+    margin-bottom: 1em;
+}
+
+
+.details-m  > img {
+    width: 100%;
+    margin-top: 2em;
+    object-fit: cover;
+}
+
+.details--section-m > button {
+    width: 150px;
+    border: 2px solid var(--color1);
+    background-color: transparent;
+    color: var(--color1);
+    padding: 1em 0;
+    margin-top: 2em;
+}
+
+
+
+@media (max-width: 1200px) {
+    .tabs {
+        width: 80%;
+    }
+    .tab-body {
+        width: 100%;
+        margin-top: 0 !important;
+    }
+    .body--left > h1 {
+        font-size: 1.5em;
+    }
+}
+
+
+
+@media (max-width: 769px) {
+    .tabs {
+        display: none;
+    }
+
+    .mobile-projects {
+        display: block;
+    }
+} 
