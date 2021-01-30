@@ -324,10 +324,10 @@ body{
     .icon {
         margin: 0 5px !important;    
     }
-    .icon > svg {
+    /* .icon > svg {
         width: 15px;
         height: 15px;
-    }
+    } */
 
     #home-hero {
         transform: scale(0.5) !important;
