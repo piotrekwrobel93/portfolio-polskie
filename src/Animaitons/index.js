@@ -22,6 +22,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     let isClickedMenu = false
 
+
     // GET DOM NODES 
 
     const burgerLines = $.findAll('.burger-line')
@@ -30,6 +31,21 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
 
+    const enableScroll = function() {
+        window.onscroll=function(){};
+    }
+    const disableScroll = function() {
+        var x=window.scrollX;
+        var y=window.scrollY;
+        window.onscroll=function(){window.scrollTo(x, y);};
+    }
+
+    const manageScrollDuringAnimation = function( duration ){
+        disableScroll()
+        setTimeout(() => {
+            enableScroll()
+        }, duration);
+    }
 
 
 
@@ -44,12 +60,11 @@ window.addEventListener("DOMContentLoaded", function() {
                 trigger: "#home",
                 start: "5px top",
                 end: "+=5px",
+                scrub: 1,
                 onEnter: () => {
-                    gsap.to(window, {
-                        scrollTo: { y: 8},
-                        delay: 0,
-                        duration: 0.5
-                    });
+                    // disable scroll during animation
+                    manageScrollDuringAnimation(700)
+
                     gsap.to("#home", {
                         x:"100%",
                         ease: "power3.easeInOut",
@@ -57,11 +72,8 @@ window.addEventListener("DOMContentLoaded", function() {
                     });
                 },
                 onLeaveBack: () => {
-                    gsap.to( window,{
-                        scrollTo: {y: 0},
-                        delay: 0,
-                        duration: 0.5
-                    }),
+                    // disable scroll during animation
+                    manageScrollDuringAnimation(1000)                    
                     gsap.to("#home", {
                         x:"0%",
                         ease: "power3.easeInOut",
