@@ -135,6 +135,7 @@
     position: relative;
     text-align: center;
     margin-top: 2em;
+    background-color: #111;
 }
 
 .project-m {
@@ -143,7 +144,7 @@
 
 .project-m > h1 {
     text-transform: uppercase;
-    color: #333;
+    color: #fff;
 
 }
 
@@ -167,8 +168,8 @@
     width: 100vw;
     height: 100%;
     text-align: left;
-    background-color: #111;
-    color: #fff;
+    background-color: #fff;
+    color: #111;
     padding: 2em 2em;
     display: flex;
     flex-direction: column;
@@ -181,7 +182,7 @@
 }
 
 .details-m  p {
-    color: #fff;
+    color: #333;
     margin-bottom: 1em;
 }
 
