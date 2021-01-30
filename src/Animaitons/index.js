@@ -63,17 +63,20 @@ window.addEventListener("DOMContentLoaded", function() {
                 scrub: 1,
                 onEnter: () => {
                     // disable scroll during animation
-                    manageScrollDuringAnimation(700)
-
+                    manageScrollDuringAnimation(500)
                     gsap.to("#home", {
                         x:"100%",
                         ease: "power3.easeInOut",
                         duration: 0.5
                     });
+                    gsap.from(".intro--typo",{
+                        x: "-120%",
+                        opacity: 0,
+                    })
                 },
                 onLeaveBack: () => {
                     // disable scroll during animation
-                    manageScrollDuringAnimation(1000)                    
+                    manageScrollDuringAnimation(500)                    
                     gsap.to("#home", {
                         x:"0%",
                         ease: "power3.easeInOut",
@@ -130,6 +133,10 @@ window.addEventListener("DOMContentLoaded", function() {
         x: -100,
         opacity: 0,
         delay: 1.8
+    })
+    gsap.from(".mouse-wrapper",{
+        opacity: 0,
+        delay: 2
     })
 
 

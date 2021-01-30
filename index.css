@@ -79,6 +79,7 @@ body{
     top: 0; left: 0;
     background-color: var(--color2);
     color: #fff;
+    z-index: 15;
 }
 
 
@@ -214,7 +215,7 @@ body{
 #menu {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 10;
@@ -261,16 +262,73 @@ body{
 
 
 
-/* ------------------------ INTRO  ----------------------------*/
+/* ------------------------ MOUSE ICON  ----------------------------*/
 
 
 
-#intro {
-    color: #fff;
-    min-height: 101vh;
-    background-color: var(--color1);
+
+.mouse-wrapper{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 35px;
+    height: 47px;
+    transform: translateX(-50%);
 }
 
+.mouse-wrapper > p {
+    font-size: 0.25em;
+    margin-top: 35%;
+    color: #999;
+    text-align: center;
+}
+.mouse {
+    margin: 0 auto;
+    width: 25px;
+    height: 100%;
+    background-color: transparent;
+    border: 2px solid #fff;
+    border-radius: 20px;
+    position: relative;
+    animation: mouse 1.3s cubic-bezier(.645,.045,.355,1) .2s infinite;
+
+}
+
+
+.mouse-wheel {
+    width: 4px;
+    height: 4px;
+    background-color: var(--color1);
+    position: absolute;
+    top:50%;
+    left: 50%; 
+    z-index: 99999;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    animation: mouse-scroll 1.3s cubic-bezier(.645,.045,.355,1) .2s  infinite;
+}
+
+
+
+@keyframes mouse {
+    0% { transform: translateY(0); opacity: 0.5;}
+    50% { transform: translateY(-5px); opacity: 0.8;}
+    100% { transform: translateY(0); opacity: 0.5;}
+}
+
+@keyframes scrollDown {
+    0% { opacity: 1; transform: scale(1);}
+    50% { opacity: 0.8; transform: scale(0.8);}
+    100% { opacity: 1; transform: scale(1);}
+}
+
+@keyframes mouse-scroll {
+    0%, 30% { opacity: 0;}
+    50% { opacity: 1; transform: translate(-50%, -14px) scale(1);}
+    65% { opacity: 1; }
+    100% {opacity: 0; transform: translate(-50%, 0), scale(0.75);}
+    
+}
 
 
 
