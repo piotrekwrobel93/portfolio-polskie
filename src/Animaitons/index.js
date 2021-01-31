@@ -1,58 +1,34 @@
-
-import { $ } from '../helpers.js'
+import { $, openInNewTab } from '../helpers.js'
 import { manageTabs } from '../helpers.js'
-
-window.onbeforeunload = function () {
-    window.scrollTo(0, 0);
-}
-
-gsap.registerPlugin( ScrollTrigger )
-
-
+import { manageScrollDuringAnimation } from '../helpers.js'
 
 window.addEventListener("DOMContentLoaded", function() {
-
-    let isSmallScreen = false
-    if ( window.innerWidth < 769 ) {
-        isSmallScreen = true
-    }
-
-
+    
+    window.onbeforeunload = () => window.scrollTo(0, 0);
+    gsap.registerPlugin( ScrollTrigger )
+    
+    
     // VARIABLES
-
     let isClickedMenu = false
-
-
+    let isSmallScreen = false
+    
+    
     // GET DOM NODES 
-
+    
     const burgerLines = $.findAll('.burger-line')
     const burgerDiv = $.find('.navigation--burger')
     const rightMenuPanel = $.find(".right-panel")
-
-
-
-    const enableScroll = function() {
-        window.onscroll=function(){};
-    }
-    const disableScroll = function() {
-        var x=window.scrollX;
-        var y=window.scrollY;
-        window.onscroll=function(){window.scrollTo(x, y);};
-    }
-
-    const manageScrollDuringAnimation = function( duration ){
-        disableScroll()
-        setTimeout(() => {
-            enableScroll()
-        }, duration);
-    }
-
-
-
+    const buttonProject1 = $.find("#link--project1")
+    const buttonProject2 = $.find("#link--project2")
+    const buttonProject3 = $.find("#link--project3")
+    
+    
+    // Check for small screen     
+    window.innerWidth < 769 && ( isSmallScreen = true )
+    
     /** ------------------------------------------------------------------------ */
 
     //  Home page Scroll Trigger
-
     if ( !isSmallScreen ) {
 
         gsap.to("#home",{
@@ -62,29 +38,18 @@ window.addEventListener("DOMContentLoaded", function() {
                 end: "+=5px",
                 scrub: 1,
                 onEnter: () => {
-                    // disable scroll during animation
+                    // DISABLE SCROLL
                     manageScrollDuringAnimation(500)
-                    gsap.to("#home", {
-                        x:"100%",
-                        ease: "power3.easeInOut",
-                        duration: 0.5
-                    });
-                    gsap.from(".intro--typo",{
-                        x: "-120%",
-                        opacity: 0,
-                    })
+                    // 
+                    gsap.to("#home", { x:"100%", ease: "power3.easeInOut", duration: 0.5 });
+                    gsap.from(".intro--typo",{ x: "-120%", opacity: 0 })
                 },
                 onLeaveBack: () => {
-                    // disable scroll during animation
-                    manageScrollDuringAnimation(500)                    
-                    gsap.to("#home", {
-                        x:"0%",
-                        ease: "power3.easeInOut",
-                        duration: 0.5
-                    })
-                    gsap.from("#home-hero-typo", {
-                        opacity: 0,
-                    })
+                    //  DISABLE SCROLL
+                    manageScrollDuringAnimation(500)  
+                    // 
+                    gsap.to("#home", { x:"0%", ease: "power3.easeInOut", duration: 0.5 })
+                    gsap.from("#home-hero-typo", { opacity: 0 })
                 }
             },
         })
@@ -100,13 +65,8 @@ window.addEventListener("DOMContentLoaded", function() {
     // LOGO SPARROW SVG ANIMATION
 
 
-    anime({
-        targets: "#sparrow path",
-        strokeDashoffset: [ anime.setDashoffset, 0],
-        duration: 1500,
-        easing: "easeInQuad",
-    }).play()
-
+    anime({ targets: "#sparrow path", strokeDashoffset: [ anime.setDashoffset, 0 ],duration: 1500, easing: "easeInQuad",})
+        .play()
 
 
 
@@ -115,113 +75,57 @@ window.addEventListener("DOMContentLoaded", function() {
 
     // LOAD IN ANIMATION ON HOME PAGE 
 
-    gsap.from('.navigation', {
-        y: "-100%",
-        delay: 1.7
-    })
-    gsap.from('#home-hero-typo h1', {
-        x: 100,
-        opacity: 0,
-        delay: 1.8
-    })
-    gsap.from('#home-hero-typo p', {
-        x: 100,
-        opacity: 0,
-        delay: 1.8
-    })
-    gsap.from("#home-hero > nav", {
-        x: -100,
-        opacity: 0,
-        delay: 1.8
-    })
-    gsap.from(".mouse-wrapper",{
-        opacity: 0,
-        delay: 2
-    })
-
+    gsap.from('.navigation', { y: "-100%", delay: 1.7 })
+    gsap.from('#home-hero-typo h1', { x: 100, opacity: 0, delay: 1.8 })
+    gsap.from('#home-hero-typo p', { x: 100, opacity: 0, delay: 1.8 })
+    gsap.from("#home-hero > nav", { x: -100, opacity: 0, delay: 1.8 })
+    gsap.from(".mouse-wrapper",{ opacity: 0, delay: 2 })
 
 
     /** ------------------------------------------------------------------------ */
 
     // BURGER ICON ANIMATION ON CLICK & MENU TOGGLING
 
-    const animateBurgerIcon = function () {
+    const animateBurgerIcon = () => {
 
-        gsap.defaults({duration: 0.3, ease: "power3.in"})
+        gsap.defaults({ duration: 0.3, ease: "power3.in"})
         isClickedMenu = !isClickedMenu
         // 
         isClickedMenu ? openMenu() : closeMenu()
     }
 
 
-    const openMenu = function() {
+    const openMenu = () => {
         isClickedMenu = true
-        gsap.to('#menu', {
-            left: "100%",
-            duration: 0.5,
-        })
-        gsap.to("#navigation--name", {
-            opacity: 1,
-            x: 0,
-            delay: 0.2,
-        })
-        gsap.to("#burger-line-1", {
-            x: 10,
-            backgroundColor: "#111"
-        })
-        gsap.to("#burger-line-2", {
-            x: 0,
-            backgroundColor: "#111",
-            width: 25
-        })
-        gsap.to("#burger-line-3", {
-            x: -10,
-            backgroundColor: "#111"
-        })
-
+        gsap.to('#menu', { left: "100%", duration: 0.5, })
+        gsap.to("#navigation--name", { opacity: 1, x: 0, delay: 0.2, })
+        gsap.to("#burger-line-1", { x: 10, backgroundColor: "#111" })
+        gsap.to("#burger-line-2", { x: 0, backgroundColor: "#111", width: 25 })
+        gsap.to("#burger-line-3", { x: -10, backgroundColor: "#111" })
     }
 
-    const closeMenu = function() {
+    const closeMenu = () => {
         isClickedMenu = false
-        gsap.to('#menu', {
-            left: "0%",
-            duration: 0.5,
-        })
-        gsap.to("#navigation--name", {
-            opacity: 0,
-            x: -10,
-            delay: 0,
-        })
-        gsap.to("#burger-line-1", {
-            x: 0,
-            backgroundColor: "#fff"
-        })
-        gsap.to("#burger-line-2", {
-            x: 0,
-            backgroundColor: "#fff",
-            width: 40
-        })
-        gsap.to("#burger-line-3", {
-            x: 0,
-            backgroundColor: "#fff"
-        })
-
+        gsap.to('#menu', { left: "0%", duration: 0.5, })
+        gsap.to("#navigation--name", { opacity: 0, x: -10, delay: 0, })
+        gsap.to("#burger-line-1", { x: 0, backgroundColor: "#fff" })
+        gsap.to("#burger-line-2", {x: 0, backgroundColor: "#fff", width: 40 })
+        gsap.to("#burger-line-3", { x: 0, backgroundColor: "#fff" })
     }
-
-    const menuAnimation = function() {
-        animateBurgerIcon()
-    }
-
-
 
     manageTabs()
+
+
     /** ------------------------------------------------------------------------ */
 
     // EVENT LISTENERS
 
-    burgerDiv.onclick = menuAnimation
+    burgerDiv.onclick = animateBurgerIcon
     rightMenuPanel.onclick = closeMenu
 
+    buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
+    buttonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
+    buttonProject3.onclick = () => openInNewTab('https://google.com')
 
 
 })
