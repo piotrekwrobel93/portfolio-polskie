@@ -1,0 +1,178 @@
+.about {
+    width: 100vw;
+    min-height : 100vh;
+    height: 100%;
+    background-color: var(--color2);
+    /* background-color: red; */
+    color: #fff;
+}
+
+
+.about > h1 {
+    text-align: center;
+    font-size: 3em;
+    color: #fff;
+}
+
+.about > h1 > span {
+    color: var(--color1);
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+/* Left Section */
+
+
+
+.about--top {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color2);
+    margin: 2em 0;
+}
+
+.about--top--left {
+    max-width: 400px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color2);
+    box-shadow: 0px 0px 20px #000;
+    padding: 40px;
+    border-radius: 5px;
+    margin-right: 50px;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 5px solid #111;
+}
+
+.avatar > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.personal--info {
+    padding-top: 2em;
+    line-height: 30px;
+}
+
+.personal--info > p {
+    text-transform: uppercase;
+    color: #999;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+.personal--info > p > span {
+    text-transform: none;
+    margin-left: 3px;
+    color: #fff;
+}
+
+
+.about--top--right {
+    width: 50%;
+    min-width: 40%;
+    font-size: 1.1em;
+    /* background-color: red; */
+}
+
+
+.about--top--right > p {
+    max-width: 80%;
+}
+
+
+.about--bottom {
+    width: 100vw;
+    height: 100%;
+    padding: 3em 0;
+    background: var(--color1);
+}
+
+.about--bottom > h2 {
+    text-align: center;
+    padding-bottom: 2em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.about--bottom > div {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    
+
+}   
+
+
+.about--bottom > div > p:nth-child(odd) {
+    color: #111;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.about--bottom > div > p:nth-child(even) {
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+
+@media ( max-width: 1024px ) {
+    .about--top--right {
+        width: 40%;
+        font-size: 0.8em;
+    }
+}
+
+
+
+@media (max-width: 769px ) {
+    .about--top {
+        flex-direction: column;
+        height: 100%;
+    }
+    .about--top--left {
+        margin: 2em 0;
+    }
+    .about--top--right {
+        width: 90%;
+        text-align: left;
+        text-indent: 20px;
+        margin-top: 2em !important; 
+    }
+    .about--top--right > p {
+        font-size: 1.2em;
+        margin: 0 auto;
+    }
+    .about > h1 {
+        padding: 1em 0 0 0;
+    }
+    .about--top--right > p {
+        font-size: 1.3em;
+        line-height: 25px;
+    }
+}
+
+
+@media (max-width: 480px ) {
+
+    .about--top--right{
+        width: 100vw;
+        padding: 0 0 2em 0;
+        margin: 0;
+    }
+
+}

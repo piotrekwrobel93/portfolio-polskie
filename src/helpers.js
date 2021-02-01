@@ -51,8 +51,8 @@ export const openInNewTab = url =>  {
 
 
 
-const enableScroll = () => window.onscroll = function(){};
-const disableScroll = () => {
+export const enableScroll = () => window.onscroll = function(){};
+export const disableScroll = () => {
     // GET CURRENT SCROLL POSITION
     var x=window.scrollX;
     var y=window.scrollY;

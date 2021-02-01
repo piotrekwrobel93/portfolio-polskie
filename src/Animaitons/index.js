@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded", function() {
     // VARIABLES
     let isClickedMenu = false
     let isSmallScreen = false
-    
+    let isFirstAnimation = true
     
     // GET DOM NODES 
     
@@ -26,6 +26,9 @@ window.addEventListener("DOMContentLoaded", function() {
     // Check for small screen     
     window.innerWidth < 769 && ( isSmallScreen = true )
     
+
+
+
     /** ------------------------------------------------------------------------ */
 
     //  Home page Scroll Trigger
@@ -55,6 +58,7 @@ window.addEventListener("DOMContentLoaded", function() {
         })
 
 
+
     }
 
     
@@ -62,30 +66,26 @@ window.addEventListener("DOMContentLoaded", function() {
 
     /** ------------------------------------------------------------------------ */
     
-    // LOGO SPARROW SVG ANIMATION
-
-
+    // SVG ANIMATION
+    // SPARROW
     anime({ targets: "#sparrow path", strokeDashoffset: [ anime.setDashoffset, 0 ],duration: 1500, easing: "easeInQuad",})
         .play()
-
-
 
 
     /** ------------------------------------------------------------------------ */
 
     // LOAD IN ANIMATION ON HOME PAGE 
-
-    gsap.from('.navigation', { y: "-100%", delay: 1.7 })
-    gsap.from('#home-hero-typo h1', { x: 100, opacity: 0, delay: 1.8 })
-    gsap.from('#home-hero-typo p', { x: 100, opacity: 0, delay: 1.8 })
-    gsap.from("#home-hero > nav", { x: -100, opacity: 0, delay: 1.8 })
-    gsap.from(".mouse-wrapper",{ opacity: 0, delay: 2 })
+    isFirstAnimation && 
+        gsap.from('.navigation', { y: "-100%", delay: 1.7 })
+        gsap.from('#home-hero-typo h1', { x: 100, opacity: 0, delay: 1.8 })
+        gsap.from('#home-hero-typo p', { x: 100, opacity: 0, delay: 1.8 })
+        gsap.from("#home-hero > nav", { x: -100, opacity: 0, delay: 1.8 })
+        gsap.from(".mouse-wrapper",{ opacity: 0, delay: 2 })
 
 
     /** ------------------------------------------------------------------------ */
 
     // BURGER ICON ANIMATION ON CLICK & MENU TOGGLING
-
     const animateBurgerIcon = () => {
 
         gsap.defaults({ duration: 0.3, ease: "power3.in"})
