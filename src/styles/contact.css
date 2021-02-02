@@ -1,0 +1,74 @@
+
+#contact {
+    width: 100vw;
+    height: 90vh;
+    background-color: #fff;
+}
+
+#contact > h1 {
+    text-align: center;
+    font-size: 3em;
+    padding: 2em 0 1em 0;
+}
+
+#contact > h1 > span {
+    color: var(--color1);
+}
+
+#contact > form {
+    width: 30vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#contact > form > input,
+#contact > form > textarea {
+    padding: 20px;
+    border: none;
+    font-size: 16px;
+    background-color: #ddd;
+}
+#contact > form > input::placeholder {
+    color: #999;
+}
+#contact > form > input {
+    margin: 0 0 20px 0;
+    color: #111;
+}
+
+#contact > form > label {
+    color: #111;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding: 0px 0;
+}
+
+#contact > form > textarea {
+    resize: none;
+    font-family: sans-serif;
+}
+
+#contact > form > textarea::placeholder {
+    color: #999;
+}
+
+#contact > form > input[type="submit"] {
+    margin-top: 2em;
+    color: #fff;
+    background-color: var(--color2);
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+
+
+@media ( max-width: 1024px ) {
+    #contact > form {
+        width: 70vw;
+    }
+}

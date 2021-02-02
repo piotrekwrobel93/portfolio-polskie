@@ -1,0 +1,32 @@
+#footer {
+    width: 100vw;
+    background-color:var(--color2);
+    color: #fff;
+    position: relative;
+}
+.footer--wrapper{ 
+    width: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.footer--wrapper > p {
+    font-size: 0.3em;
+    margin-right: 1em;
+}
+
+.footer--content {
+    display: flex;
+    align-items: center;
+}
+#footer > .footer--content > p {
+    font-size: 0.3em;
+    letter-spacing: 1px;
+    margin-right: 1em;
+}
+
+
+

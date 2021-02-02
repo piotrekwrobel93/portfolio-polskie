@@ -18,7 +18,7 @@
 }
 
 
-*, *::after, *::before {margin: 0;padding: 0;box-sizing: border-box; outline-width: 0; }
+* {margin: 0;padding: 0;box-sizing: border-box; outline-width: 0; }
 a { text-decoration: none; outline-width: 0;}
 ul { list-style-type: none;}
 img { display: block;}
@@ -42,6 +42,7 @@ body{
     height: 100%;
     overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
+    
 }
 
 .section {
