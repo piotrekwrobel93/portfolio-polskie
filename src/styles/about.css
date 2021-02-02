@@ -1,9 +1,7 @@
 .about {
     width: 100vw;
-    min-height : 100vh;
     height: 100%;
     background-color: var(--color2);
-    /* background-color: red; */
     color: #fff;
 }
 
@@ -12,6 +10,8 @@
     text-align: center;
     font-size: 3em;
     color: #fff;
+    background-color: var(--color2);
+    padding: 2em 0;
 }
 
 .about > h1 > span {
@@ -27,17 +27,16 @@
 
 .about--top {
     width: 100vw;
-    height: 50vh;
+    /* height: 50vh; */
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--color2);
-    margin: 2em 0;
+    padding-bottom: 4em;
 }
 
 .about--top--left {
-    max-width: 400px;
-    min-width: 300px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -83,9 +82,7 @@
 
 .about--top--right {
     width: 50%;
-    min-width: 40%;
     font-size: 1.1em;
-    /* background-color: red; */
 }
 
 

@@ -413,3 +413,10 @@ body{
         transform: scale(0.5);
     }
 }
+
+@media ( max-height: 460px ) {
+    #home-nav {
+        display: none;
+    }
+
+}
