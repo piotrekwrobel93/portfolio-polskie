@@ -67,3 +67,16 @@ export const manageScrollDuringAnimation = duration => {
         enableScroll()
     }, duration);
 }
+
+
+
+export const _scrollTo = (element, offset) => {
+    let yPosition = element.getBoundingClientRect().y
+    if ( typeof offset === "number" ) {
+        offset && ( yPosition += offset )
+    }
+    window.scrollTo({
+        top: yPosition,
+        behavior: "smooth"
+    })
+}

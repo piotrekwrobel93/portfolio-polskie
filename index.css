@@ -377,9 +377,9 @@ body{
     }
     .navigation {
         margin: 1em 1em 0em 1em;
-        background-color: var(--color2);
         margin: 0;
         padding: 1em 0;
+        position: absolute;
     }
 }
 

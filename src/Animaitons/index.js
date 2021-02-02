@@ -1,32 +1,39 @@
-import { $, openInNewTab } from '../helpers.js'
+import { $, disableScroll, enableScroll, openInNewTab, manageScrollDuringAnimation, _scrollTo } from '../helpers.js'
 import { manageTabs } from '../helpers.js'
-import { manageScrollDuringAnimation } from '../helpers.js'
 
 window.addEventListener("DOMContentLoaded", function() {
     
     
     window.onbeforeunload = () => window.scrollTo(0, 0);
-    gsap.registerPlugin( ScrollTrigger )
+    gsap.registerPlugin( ScrollTrigger, scrollTo )
     
     
     // VARIABLES
     let isClickedMenu = false
     let isSmallScreen = false
     let isFirstAnimation = true
+    let activeMenuColor = "#fff"
     
     // GET DOM NODES 
     
-    const burgerLines = $.findAll('.burger-line')
     const burgerDiv = $.find('.navigation--burger')
     const rightMenuPanel = $.find(".right-panel")
     const buttonProject1 = $.find("#link--project1")
     const buttonProject2 = $.find("#link--project2")
     const buttonProject3 = $.find("#link--project3")
     const sectionsArray = $.findAll(".trigger")
+    const trigerAboutSection = $.find("#scroll-to--about")
+    const triggerProjectsSection = $.find("#scroll-to--projects")
+    const triggerContactSection = $.find("#scroll-to--contact")
+    const aboutSection = $.find("#about")
+    const projectSection = $.find("#projects")
+    const contactSection = $.find("#contact")
     
     
     // Check for small screen     
     window.innerWidth < 769 && ( isSmallScreen = true )
+
+
 
 
 
@@ -117,16 +124,18 @@ window.addEventListener("DOMContentLoaded", function() {
         isClickedMenu = false
         gsap.to('#menu', { left: "0%", duration: 0.5, })
         gsap.to("#navigation--name", { opacity: 0, x: -10, delay: 0, })
-        gsap.to("#burger-line-1", { x: 0, backgroundColor: "#fff" })
-        gsap.to("#burger-line-2", {x: 0, backgroundColor: "#fff", width: 40 })
-        gsap.to("#burger-line-3", { x: 0, backgroundColor: "#fff" })
+        // gsap.to("#burger-line-1", { x: 0, backgroundColor: "#fff" })
+        // gsap.to("#burger-line-2", {x: 0, backgroundColor: "#fff", width: 40 })
+        // gsap.to("#burger-line-3", { x: 0, backgroundColor: "#fff" })
+        gsap.to("#burger-line-1", { x: 0, backgroundColor: activeMenuColor })
+        gsap.to("#burger-line-2", {x: 0, backgroundColor: activeMenuColor, width: 40 })
+        gsap.to("#burger-line-3", { x: 0, backgroundColor: activeMenuColor })
     }
 
     manageTabs()
 
 
     /** ------------------------------------------------------------------------ */
-
     // EVENT LISTENERS
 
     burgerDiv.onclick = animateBurgerIcon
@@ -135,6 +144,46 @@ window.addEventListener("DOMContentLoaded", function() {
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     buttonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
     buttonProject3.onclick = () => openInNewTab('https://google.com')
+
+    if (!isSmallScreen) {
+        trigerAboutSection.onclick = event => {
+            event.preventDefault()
+            _scrollTo( aboutSection )
+            setTimeout( () => {
+                _scrollTo( aboutSection)
+            }, 900)
+        } 
+
+        triggerProjectsSection.onclick = event => {
+            event.preventDefault()
+            _scrollTo( projectSection )
+            setTimeout( () => {
+                _scrollTo( projectSection )
+            }, 900)
+        }
+        triggerContactSection.onclick = event => {
+            event.preventDefault()
+            _scrollTo( contactSection )
+            setTimeout( () => {
+                _scrollTo( contactSection )
+            }, 900)
+        }
+    }
+
+    if ( isSmallScreen ) {
+        trigerAboutSection.onclick = event => {
+            event.preventDefault()
+            // _scrollTo( aboutSection )
+            gsap.to( window, { duration: 1, scrollTo: aboutSection})
+        }
+        triggerProjectsSection.onclick = event => {
+            event.preventDefault()
+            gsap.to( window, { duration: 0.5, scrollTo: projectSection})
+        }
+        triggerContactSection.onclick = event => {
+            event.preventDefault()
+            gsap.to( window, { duration: 1.2, scrollTo: contactSection})        }
+    }
 
     if ( !isSmallScreen ) {
 
@@ -146,6 +195,7 @@ window.addEventListener("DOMContentLoaded", function() {
             start: "top top",
             onEnter: self => {
                  t1.to(".burger-line", { backgroundColor: "#fff" })
+                 activeMenuColor = "#fff"
             }
         })
         ScrollTrigger.create({
@@ -154,17 +204,19 @@ window.addEventListener("DOMContentLoaded", function() {
             onEnter: self => {
                 t1.to(".burger-line", { backgroundColor: "#000" })
                 t2.to(".navicon", {fill: "#000" })
+                activeMenuColor = "#000"
             },
             onLeaveBack: self => {
                 t1.to(".burger-line", { backgroundColor: "#fff"})
                 t2.to(".navicon", { fill: "#fff"})
+                activeMenuColor = "#fff"
             }
         })
         ScrollTrigger.create({
             trigger: sectionsArray[2],
             start: "-35px top",
-            onEnter: self => t1.to(".burger-line", { backgroundColor: "#fff"}),
-            onLeaveBack: self => t1.to(".burger-line", { backgroundColor: "#000"})
+            onEnter: self =>  { t1.to(".burger-line", { backgroundColor: "#fff"}); activeMenuColor = "#fff"},
+            onLeaveBack: self => { t1.to(".burger-line", { backgroundColor: "#000"}); activeMenuColor = "#000"}
         })
         ScrollTrigger.create({
             trigger: '.trigger--wave',
@@ -178,13 +230,16 @@ window.addEventListener("DOMContentLoaded", function() {
             onEnter: self => {
                 t1.to(".burger-line", { backgroundColor: "#000"})
                 t2.to(".navicon", { fill: "#000"})
+                activeMenuColor = "#000"
             },
             onLeaveBack: self => {
                 t1.to(".burger-line", { backgroundColor: "#fff"})
                 t2.to(".navicon", { fill: "#fff"})
+                activeMenuColor = "#fff"
             }
         })
     }
+
 
 
 })
