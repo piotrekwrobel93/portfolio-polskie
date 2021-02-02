@@ -1,9 +1,10 @@
 
 #contact {
     width: 100vw;
+    height: 100%;
     background-color: #fff;
     position: relative;
-    z-index: 999;
+    z-index: 9;
 }
 
 #contact > h1 {

@@ -4,6 +4,7 @@ import { manageScrollDuringAnimation } from '../helpers.js'
 
 window.addEventListener("DOMContentLoaded", function() {
     
+    
     window.onbeforeunload = () => window.scrollTo(0, 0);
     gsap.registerPlugin( ScrollTrigger )
     
@@ -21,11 +22,11 @@ window.addEventListener("DOMContentLoaded", function() {
     const buttonProject1 = $.find("#link--project1")
     const buttonProject2 = $.find("#link--project2")
     const buttonProject3 = $.find("#link--project3")
+    const sectionsArray = $.findAll(".trigger")
     
     
     // Check for small screen     
     window.innerWidth < 769 && ( isSmallScreen = true )
-    
 
 
 
@@ -55,6 +56,14 @@ window.addEventListener("DOMContentLoaded", function() {
                     gsap.from("#home-hero-typo", { opacity: 0 })
                 }
             },
+        })
+
+        gsap.to( ".navigation", {
+            scrollTrigger: {
+                trigger: document.body,
+                start: "bottom center",
+                onEnter: () => alert("now")
+            }
         })
 
 
@@ -126,6 +135,56 @@ window.addEventListener("DOMContentLoaded", function() {
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     buttonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
     buttonProject3.onclick = () => openInNewTab('https://google.com')
+
+    if ( !isSmallScreen ) {
+
+        let t1 = gsap.timeline({ duration: 0, delay: 0.5})
+        let t2 = gsap.timeline({ duration: 0, delay: 0, ease: 'power2'})
+    
+        ScrollTrigger.create({
+            trigger: sectionsArray[0],
+            start: "top top",
+            onEnter: self => {
+                 t1.to(".burger-line", { backgroundColor: "#fff" })
+            }
+        })
+        ScrollTrigger.create({
+            trigger: sectionsArray[1],
+            start: "top top",
+            onEnter: self => {
+                t1.to(".burger-line", { backgroundColor: "#000" })
+                t2.to(".navicon", {fill: "#000" })
+            },
+            onLeaveBack: self => {
+                t1.to(".burger-line", { backgroundColor: "#fff"})
+                t2.to(".navicon", { fill: "#fff"})
+            }
+        })
+        ScrollTrigger.create({
+            trigger: sectionsArray[2],
+            start: "-35px top",
+            onEnter: self => t1.to(".burger-line", { backgroundColor: "#fff"}),
+            onLeaveBack: self => t1.to(".burger-line", { backgroundColor: "#000"})
+        })
+        ScrollTrigger.create({
+            trigger: '.trigger--wave',
+            start: "50px top",
+            onEnter: self => t2.to(".navicon", { fill: "#fff"}),
+            onLeaveBack: self => t1.to(".navicon", { fill: "#000"})
+        })
+        ScrollTrigger.create({
+            trigger: sectionsArray[3],
+            start: "-30px top",
+            onEnter: self => {
+                t1.to(".burger-line", { backgroundColor: "#000"})
+                t2.to(".navicon", { fill: "#000"})
+            },
+            onLeaveBack: self => {
+                t1.to(".burger-line", { backgroundColor: "#fff"})
+                t2.to(".navicon", { fill: "#fff"})
+            }
+        })
+    }
 
 
 })
