@@ -80,3 +80,32 @@ export const _scrollTo = (element, offset) => {
         behavior: "smooth"
     })
 }
+
+
+
+export const setActiveMenuItem =  item => {
+    const menuItems = $.findAll(".left-panel--items a")
+    menuItems.forEach( item => item.classList.remove("active-item"))
+    const current = $.find( `#${item}-link`)
+    current.classList.add("active-item")
+}
+
+
+export const checkIfHomeSection = () => {
+    if ( window.scrollY > 2 ) { 
+        return false
+    } 
+    return true
+}
+
+export const scrollFromHomePage = ( section ) => {
+    _scrollTo( section )
+    setTimeout( () => {
+        gsap.to( window, { scrollTo: section, duration: 1  })
+    }, 800)
+} 
+
+
+export const scrollToSection = section => {
+    gsap.to( window, { scrollTo: section, duration: 1 })
+}

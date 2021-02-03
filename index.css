@@ -29,8 +29,7 @@ img { display: block;}
 
 
 .green { background-color: green;}
-
-
+.active-item { color: var(--color1) !important;}
 .span-color { color: var(--color1);}
 
 
@@ -312,6 +311,31 @@ body{
 }
 
 
+#scrollTop { 
+    width: 100px;
+    height: 30px;
+    display: none;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 25px;
+    z-index: 99999999;
+    transform-origin: left;
+    transform: rotate(-90deg);
+    background-color: #333;
+    font-size: 0.9em;
+}
+
+#scrollTop > p{
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+#scrollTop > p > span {
+    color: var(--color1);
+}
+
 
 @keyframes mouse {
     0% { transform: translateY(0); opacity: 0.5;}
@@ -358,6 +382,10 @@ body{
 
 @media ( max-width: 769px ) {
 
+    #scrollTop {
+        display: flex;
+    }
+
     .left-panel {
         width: 80vw !important;
     }
@@ -391,6 +419,7 @@ body{
         height: 20px;
     }
 
+
     #home-hero {
         transform: scale(0.5) !important;
     }
@@ -405,6 +434,12 @@ body{
     .navigation {
         margin: 0;
         padding: 0;
+    }
+    #scrollTop {
+        width: 80px;
+        height: 20px;
+        left: 15px;
+        font-size: 0.8em !important;
     }
 }
 

@@ -1,5 +1,7 @@
-import { $, disableScroll, enableScroll, openInNewTab, manageScrollDuringAnimation, _scrollTo } from '../helpers.js'
+import { $, disableScroll, enableScroll, openInNewTab, manageScrollDuringAnimation, _scrollTo, setActiveMenuItem, checkIfHomeSection, scrollFromHomePage, scrollToSection} from '../helpers.js'
 import { manageTabs } from '../helpers.js'
+
+
 
 window.addEventListener("DOMContentLoaded", function() {
     
@@ -8,11 +10,7 @@ window.addEventListener("DOMContentLoaded", function() {
     gsap.registerPlugin( ScrollTrigger, scrollTo )
     
     
-    // VARIABLES
-    let isClickedMenu = false
-    let isSmallScreen = false
-    let isFirstAnimation = true
-    let activeMenuColor = "#fff"
+
     
     // GET DOM NODES 
     
@@ -22,14 +20,30 @@ window.addEventListener("DOMContentLoaded", function() {
     const buttonProject2 = $.find("#link--project2")
     const buttonProject3 = $.find("#link--project3")
     const sectionsArray = $.findAll(".trigger")
+    const triggerHomeSection = $.find("#home")
     const trigerAboutSection = $.find("#scroll-to--about")
     const triggerProjectsSection = $.find("#scroll-to--projects")
     const triggerContactSection = $.find("#scroll-to--contact")
+    const menuLink_home = $.find("#home-link")
+    const menuLink_projects = $.find("#projects-link")
+    const menuLink_about = $.find("#about-link")
+    const menuLink_contact = $.find("#contact-link")
+    const homeSection = $.find("#home")
     const aboutSection = $.find("#about")
     const projectSection = $.find("#projects")
     const contactSection = $.find("#contact")
+    const scrollTopButton = $.find("#scrollTop")
     
+    // VARIABLES
+    let isClickedMenu = false
+    let isSmallScreen = false
+    let isFirstAnimation = true
+    let activeMenuColor = "#fff"
+    const sections = [ homeSection, projectSection, aboutSection, contactSection ]
+    const sections_triggers = [ menuLink_home, menuLink_projects, menuLink_about, menuLink_contact ]
     
+
+
     // Check for small screen     
     window.innerWidth < 769 && ( isSmallScreen = true )
 
@@ -77,8 +91,6 @@ window.addEventListener("DOMContentLoaded", function() {
 
     }
 
-    
-
 
     /** ------------------------------------------------------------------------ */
     
@@ -118,6 +130,7 @@ window.addEventListener("DOMContentLoaded", function() {
         gsap.to("#burger-line-1", { x: 10, backgroundColor: "#111" })
         gsap.to("#burger-line-2", { x: 0, backgroundColor: "#111", width: 25 })
         gsap.to("#burger-line-3", { x: -10, backgroundColor: "#111" })
+        disableScroll()
     }
 
     const closeMenu = () => {
@@ -130,6 +143,7 @@ window.addEventListener("DOMContentLoaded", function() {
         gsap.to("#burger-line-1", { x: 0, backgroundColor: activeMenuColor })
         gsap.to("#burger-line-2", {x: 0, backgroundColor: activeMenuColor, width: 40 })
         gsap.to("#burger-line-3", { x: 0, backgroundColor: activeMenuColor })
+        enableScroll()
     }
 
     manageTabs()
@@ -144,6 +158,66 @@ window.addEventListener("DOMContentLoaded", function() {
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     buttonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
     buttonProject3.onclick = () => openInNewTab('https://google.com')
+
+
+/* ----------------------------------------------------------------------------- */
+// MENU ITEMS SCROLL TO SECTION ON CLICK
+// FOR BIGGER SCREEN DEVICES
+
+
+    if (!isSmallScreen) {
+        sections_triggers.forEach( (section, index ) => {
+            // ADD EVENT ON CLICK
+            section.onclick = event => {
+                // CHECK IF SECTION ISNT HOME WHICH HAS INDEX OF 0 
+                if (index > 0) {
+                    event.preventDefault()
+                    // CHECKS IF EVENT WAS CALLED FROM HOMESCREEN 
+                    if (checkIfHomeSection()) {
+                        // CLOSE MENU AND AND SPECIAL METHOD HANDLING SCROLL FROM HOMESCREEN 
+                        closeMenu()
+                        scrollFromHomePage( sections[index])
+                    }
+                    else {
+                        // OTHERWISE JUST CLOSE MNEU && SCROLL TO SECTION WITH GSAP SCROLL TO PLUGIN 
+                        closeMenu()
+                        scrollToSection( sections[index])
+                    }
+                }
+                // IF EVENT WAS CALLED FROM HOMESCREEN HANDLE IT DIFFERENT WAY
+                if (index === 0) {
+                    event.preventDefault()
+                    // CHECK IF MENU-HOME-LINK WAS CLICKED ON HOME SECTION 
+                    // IF TRUE DONT PERFORM ANY ACTION AS ALREADY ON HOME SECTION
+                    // ELSE PERFORM SCROLL
+                    if (!checkIfHomeSection()){
+                        closeMenu()
+                        scrollToSection( 0)
+                    }
+                }
+            }
+        })
+    }
+
+// MENU ITEMS SCROLL TO SECTION ON CLICK
+// FOR SMALLER SCREENS
+
+
+    if ( isSmallScreen ) {
+        sections_triggers.forEach( (section, index) => {
+            section.onclick = ( event => {
+                event.preventDefault()
+                closeMenu()
+                scrollToSection( sections[index] )
+            })
+        })
+    }
+
+/* ----------------------------------------------------------------------------- */
+// HOMEPAGE MINI-MENU ITEMS
+// SCROLL TO SECTION ON CLICK 
+// TRIGGERS ONCLICK EVENT
+// FOR BIGGER SCREEN DEVICES
 
     if (!isSmallScreen) {
         trigerAboutSection.onclick = event => {
@@ -170,10 +244,15 @@ window.addEventListener("DOMContentLoaded", function() {
         }
     }
 
+/* ----------------------------------------------------------------------------- */
+// 
+// 
+// FOR SMALLER SCREEN DEVICES
+
+
     if ( isSmallScreen ) {
         trigerAboutSection.onclick = event => {
             event.preventDefault()
-            // _scrollTo( aboutSection )
             gsap.to( window, { duration: 1, scrollTo: aboutSection})
         }
         triggerProjectsSection.onclick = event => {
@@ -184,6 +263,23 @@ window.addEventListener("DOMContentLoaded", function() {
             event.preventDefault()
             gsap.to( window, { duration: 1.2, scrollTo: contactSection})        }
     }
+
+/* ----------------------------------------------------------------------------- */
+// SCROLLTOP  BUTTON ADD EVENT LISTENER
+
+    scrollTopButton.onclick = event => {
+        event.preventDefault()
+        if (!checkIfHomeSection()) {
+            scrollToSection(0)
+        }
+    }
+
+
+
+/* ----------------------------------------------------------------------------- */
+// ANIMATING NAVIGATION BURGER & ICONS ON SCROLL
+// FOR BIGGER DEVICES
+
 
     if ( !isSmallScreen ) {
 
@@ -200,23 +296,25 @@ window.addEventListener("DOMContentLoaded", function() {
         })
         ScrollTrigger.create({
             trigger: sectionsArray[1],
-            start: "top top",
+            start: "-20px top",
             onEnter: self => {
                 t1.to(".burger-line", { backgroundColor: "#000" })
                 t2.to(".navicon", {fill: "#000" })
                 activeMenuColor = "#000"
+                setActiveMenuItem("projects")
             },
             onLeaveBack: self => {
                 t1.to(".burger-line", { backgroundColor: "#fff"})
                 t2.to(".navicon", { fill: "#fff"})
                 activeMenuColor = "#fff"
+                setActiveMenuItem('home')
             }
         })
         ScrollTrigger.create({
             trigger: sectionsArray[2],
             start: "-35px top",
-            onEnter: self =>  { t1.to(".burger-line", { backgroundColor: "#fff"}); activeMenuColor = "#fff"},
-            onLeaveBack: self => { t1.to(".burger-line", { backgroundColor: "#000"}); activeMenuColor = "#000"}
+            onEnter: self =>  { t1.to(".burger-line", { backgroundColor: "#fff"}); activeMenuColor = "#fff";setActiveMenuItem('about')},
+            onLeaveBack: self => { t1.to(".burger-line", { backgroundColor: "#000"}); activeMenuColor = "#000";setActiveMenuItem('projects')}
         })
         ScrollTrigger.create({
             trigger: '.trigger--wave',
@@ -231,15 +329,16 @@ window.addEventListener("DOMContentLoaded", function() {
                 t1.to(".burger-line", { backgroundColor: "#000"})
                 t2.to(".navicon", { fill: "#000"})
                 activeMenuColor = "#000"
+                setActiveMenuItem('contact')
             },
             onLeaveBack: self => {
                 t1.to(".burger-line", { backgroundColor: "#fff"})
                 t2.to(".navicon", { fill: "#fff"})
                 activeMenuColor = "#fff"
+                setActiveMenuItem('about')
             }
         })
     }
-
 
 
 })
