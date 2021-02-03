@@ -33,6 +33,7 @@ window.addEventListener("DOMContentLoaded", function() {
     const projectSection = $.find("#projects")
     const contactSection = $.find("#contact")
     const scrollTopButton = $.find("#scrollTop")
+    const form = $.find("form")
     
     // VARIABLES
     let isClickedMenu = false
@@ -158,7 +159,7 @@ window.addEventListener("DOMContentLoaded", function() {
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     buttonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
     buttonProject3.onclick = () => openInNewTab('https://google.com')
-
+    form.onclick = event => event.preventDefault()
 
 /* ----------------------------------------------------------------------------- */
 // MENU ITEMS SCROLL TO SECTION ON CLICK

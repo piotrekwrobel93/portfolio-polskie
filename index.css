@@ -320,7 +320,7 @@ body{
     align-items: center;
     bottom: 0;
     left: 25px;
-    z-index: 99999999;
+    z-index: 999999;
     transform-origin: left;
     transform: rotate(-90deg);
     background-color: #333;
