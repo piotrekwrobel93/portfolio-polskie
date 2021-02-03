@@ -109,3 +109,5 @@ export const scrollFromHomePage = ( section ) => {
 export const scrollToSection = section => {
     gsap.to( window, { scrollTo: section, duration: 1 })
 }
+
+

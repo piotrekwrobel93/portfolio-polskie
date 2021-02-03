@@ -325,6 +325,8 @@ body{
     transform: rotate(-90deg);
     background-color: #333;
     font-size: 0.9em;
+    visibility: hidden;
+    transition: visibility 0.2s ease-in;
 }
 
 #scrollTop > p{

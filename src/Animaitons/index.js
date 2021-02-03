@@ -1,4 +1,4 @@
-import { $, disableScroll, enableScroll, openInNewTab, manageScrollDuringAnimation, _scrollTo, setActiveMenuItem, checkIfHomeSection, scrollFromHomePage, scrollToSection} from '../helpers.js'
+import { $, disableScroll, enableScroll, openInNewTab, manageScrollDuringAnimation, _scrollTo, setActiveMenuItem, checkIfHomeSection, scrollFromHomePage, scrollToSection } from '../helpers.js'
 import { manageTabs } from '../helpers.js'
 
 
@@ -261,7 +261,9 @@ window.addEventListener("DOMContentLoaded", function() {
         }
         triggerContactSection.onclick = event => {
             event.preventDefault()
-            gsap.to( window, { duration: 1.2, scrollTo: contactSection})        }
+            gsap.to( window, { duration: 1.2, scrollTo: contactSection})
+        }
+
     }
 
 /* ----------------------------------------------------------------------------- */
@@ -269,9 +271,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     scrollTopButton.onclick = event => {
         event.preventDefault()
-        if (!checkIfHomeSection()) {
-            scrollToSection(0)
-        }
+        scrollToSection(0)
     }
 
 
@@ -340,5 +340,18 @@ window.addEventListener("DOMContentLoaded", function() {
         })
     }
 
+
+    if ( isSmallScreen ) {
+        ScrollTrigger.create({
+            trigger: sectionsArray[1],
+            start: "-30px top",
+            onEnter: () => {
+                scrollTopButton.style.visibility = "visible"                
+            },
+            onLeaveBack: () => [
+                scrollTopButton.style.visibility = "hidden"
+            ]
+        })
+    }
 
 })
