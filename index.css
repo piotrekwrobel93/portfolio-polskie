@@ -52,6 +52,7 @@ img { display: block;}
     text-transform: uppercase;
     letter-spacing: 0.5em;
     color: #fff;
+    /* opacity: 0; */
   }
   
   .ml12 .letter {
@@ -59,6 +60,7 @@ img { display: block;}
     line-height: 1em;
     color: #fff;
     visibility: none;
+    opacity: 0;
   }
 
   .spinner {
