@@ -5,6 +5,7 @@ import { manageTabs } from '../helpers.js'
 window.onunload = () => window.scrollTo(0,0)
 window.onload = () => {
     
+    disableScroll()
     gsap.registerPlugin( ScrollTrigger, scrollTo )
 
     // LOADER ANIMATION
@@ -12,7 +13,6 @@ window.onload = () => {
     let textWrapper = $.find('.ml12');
     textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
     let loaderDiv = $.find('#loader')
-
     anime.timeline({loop: false})
       .add({
         targets: '.ml12 .letter',
@@ -47,7 +47,7 @@ window.onload = () => {
             gsap.fromTo('#home-hero-typo h1', {  x: 100 , opacity: 0 }, { opacity: 1, x: 0, delay: 2})
             gsap.fromTo('#home-hero-typo p', { x: 100, opacity: 0 }, { opacity: 1, x: 0, delay: 2})
             gsap.fromTo("#home-hero > nav", { x: -100, opacity: 0 }, { opacity: 1, x: 0, delay: 2})
-            gsap.fromTo(".mouse-wrapper",{ opacity: 0 }, { opacity: 1, delay: 2})
+            gsap.fromTo(".mouse-wrapper",{ opacity: 0 }, { opacity: 1, delay: 2, onComplete: () => enableScroll() })
             gsap.fromTo("#sparrow", { opacity: 0},{opacity: 1})
             // SVG ANIMATION
             // SPARROW
