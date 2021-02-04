@@ -51,16 +51,14 @@ img { display: block;}
     font-size: 1.8em;
     text-transform: uppercase;
     letter-spacing: 0.5em;
-    color: #fff;
-    /* opacity: 0; */
-  }
-  
-  .ml12 .letter {
+    color: blue;
+}
+
+.ml12 .letter {
+    opacity: 0;
     display: inline-block;
     line-height: 1em;
     color: #fff;
-    visibility: none;
-    opacity: 0;
   }
 
   .spinner {
