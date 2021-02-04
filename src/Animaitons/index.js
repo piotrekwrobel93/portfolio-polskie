@@ -4,14 +4,57 @@ import { manageTabs } from '../helpers.js'
 
 
 window.onunload = () => window.scrollTo(0,0)
-
-
-window.addEventListener("DOMContentLoaded", function() {
+window.onload = () => {
     
     // window.onbeforeunload = () => window.scrollTo(0, 0);
     gsap.registerPlugin( ScrollTrigger, scrollTo )
     
-    
+    let isLoader = true
+
+
+    // LOADER ANIMATION
+
+    let textWrapper = $.find('.ml12');
+    textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+    let loaderDiv = $.find('#loader')
+
+    anime.timeline({loop: false})
+      .add({
+        targets: '.ml12 .letter',
+        translateX: [40,0],
+        translateZ: 0,
+        opacity: [0,1],
+        easing: "easeOutExpo",
+        duration: 1000,
+        delay: (el, i) => 500 + 30 * i
+      }).add({
+        targets: '.ml12 .letter',
+        translateX: [0,-30],
+        opacity: [1,0],
+        easing: "easeInExpo",
+        duration: 1000,
+        delay: (el, i) => 100 + 30 * i
+      }).add({
+          targets: loaderDiv,
+          scale: 0,
+          opacity: 0,
+          ease: "easeInExpo",
+          duration: 500,
+          complete: () => {
+            // LOAD IN ANIMATION ON HOME PAGE 
+            // isFirstAnimation && 
+            gsap.to('.navigation', { top: "0%", delay: 2 })
+            gsap.fromTo('#home-hero-typo h1', {  x: 100 , opacity: 0 }, { opacity: 1, x: 0, delay: 2})
+            gsap.fromTo('#home-hero-typo p', { x: 100, opacity: 0 }, { opacity: 1, x: 0, delay: 2})
+            gsap.fromTo("#home-hero > nav", { x: -100, opacity: 0 }, { opacity: 1, x: 0, delay: 2})
+            gsap.fromTo(".mouse-wrapper",{ opacity: 0 }, { opacity: 1, delay: 2})
+            gsap.fromTo("#sparrow", { opacity: 0},{opacity: 1})
+            // SVG ANIMATION
+            // SPARROW
+            anime({ targets: "#sparrow path", strokeDashoffset: [ anime.setDashoffset, 0 ],duration: 2000, easing: "easeInQuad", opacity: 1})
+            .play()
+          }
+      })
 
     
     // GET DOM NODES 
@@ -81,7 +124,6 @@ window.addEventListener("DOMContentLoaded", function() {
             scrollTrigger: {
                 trigger: document.body,
                 start: "bottom center",
-                onEnter: () => alert("now")
             }
         })
 
@@ -89,22 +131,12 @@ window.addEventListener("DOMContentLoaded", function() {
 
 
     /** ------------------------------------------------------------------------ */
-    
-    // SVG ANIMATION
-    // SPARROW
-    anime({ targets: "#sparrow path", strokeDashoffset: [ anime.setDashoffset, 0 ],duration: 1500, easing: "easeInQuad",})
-        .play()
+
 
 
     /** ------------------------------------------------------------------------ */
 
-    // LOAD IN ANIMATION ON HOME PAGE 
-    isFirstAnimation && 
-        gsap.from('.navigation', { y: "-100%", delay: 1.7 })
-        gsap.from('#home-hero-typo h1', { x: 100, opacity: 0, delay: 1.8 })
-        gsap.from('#home-hero-typo p', { x: 100, opacity: 0, delay: 1.8 })
-        gsap.from("#home-hero > nav", { x: -100, opacity: 0, delay: 1.8 })
-        gsap.from(".mouse-wrapper",{ opacity: 0, delay: 2 })
+
 
 
     /** ------------------------------------------------------------------------ */
@@ -350,4 +382,4 @@ window.addEventListener("DOMContentLoaded", function() {
         })
     }
 
-})
+}
