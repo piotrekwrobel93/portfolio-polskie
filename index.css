@@ -325,7 +325,7 @@ body{
     transition: visibility 0.2s ease-in;
     cursor: pointer;
     animation: scrollTopIcon 2s ease-out infinite alternate;
-    fill: var(--color2);
+    fill: #000;
 }
 
 #scrollTop > svg {
@@ -337,7 +337,7 @@ body{
 @keyframes scrollTopIcon {
     0% { transform: translateY(0) scale(1);}
     20% { transform: translateY(0) scale(1);}
-    50% { transform: translateY(-5px) scale(0.8); fill: #555;}
+    50% { transform: translateY(-5px) scale(0.8)}
     100% { transform: translateY(0) scale(1)}
 }
 
