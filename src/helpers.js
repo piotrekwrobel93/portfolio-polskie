@@ -57,7 +57,7 @@ export const disableScroll = () => {
     var x=window.scrollX;
     var y=window.scrollY;
     // FORCE SCROLL POSITION TO BE THE SAME WHEN SCROLLING 
-    window.onscroll = () => window.scrollTo(x, y) 
+    window.onscroll = (event) => { event.stopPropagation(); window.scrollTo(x, y) } 
 }
 
 export const manageScrollDuringAnimation = duration => {
@@ -65,12 +65,23 @@ export const manageScrollDuringAnimation = duration => {
     // SET TIMEOUT WHEN ANIMATION IS BEING PLAYED
     setTimeout(() => {
         enableScroll()
-    }, duration);
+    }, duration || 800);
 }
 
 
+export const toggleOverflowDuringAnimation = duration => {
 
-export const _scrollTo = (element, offset) => {
+    document.body.style.height = "102vh"
+    document.body.style.overflow = "hidden"
+    
+    setTimeout( () => {
+        document.body.style.height = "100%"
+        document.body.style.overflow = "visible"
+    }, duration || 800)
+}
+
+
+export const _scrollTo = (element, offset = 0) => {
     let yPosition = element.getBoundingClientRect().y
     if ( typeof offset === "number" ) {
         offset && ( yPosition += offset )
@@ -81,8 +92,6 @@ export const _scrollTo = (element, offset) => {
     })
 }
 
-
-
 export const setActiveMenuItem =  item => {
     const menuItems = $.findAll(".left-panel--items a")
     menuItems.forEach( item => item.classList.remove("active-item"))
@@ -90,13 +99,7 @@ export const setActiveMenuItem =  item => {
     current.classList.add("active-item")
 }
 
-
-export const checkIfHomeSection = () => {
-    if ( window.scrollY > 2 ) { 
-        return false
-    } 
-    return true
-}
+export const checkIfHomeSection = () => window.scrollY > 2 ? false : true
 
 export const scrollFromHomePage = ( section ) => {
     _scrollTo( section )
@@ -105,9 +108,6 @@ export const scrollFromHomePage = ( section ) => {
     }, 800)
 } 
 
-
 export const scrollToSection = section => {
     gsap.to( window, { scrollTo: section, duration: 1 })
 }
-
-

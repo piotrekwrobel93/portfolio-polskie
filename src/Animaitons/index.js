@@ -1,12 +1,14 @@
-import { $, disableScroll, enableScroll, openInNewTab, manageScrollDuringAnimation, _scrollTo, setActiveMenuItem, checkIfHomeSection, scrollFromHomePage, scrollToSection } from '../helpers.js'
+import { $, disableScroll, enableScroll, openInNewTab, _scrollTo, setActiveMenuItem, checkIfHomeSection, scrollFromHomePage, scrollToSection,
+    toggleOverflowDuringAnimation } from '../helpers.js'
 import { manageTabs } from '../helpers.js'
 
+
+window.onunload = () => window.scrollTo(0,0)
 
 
 window.addEventListener("DOMContentLoaded", function() {
     
-    
-    window.onbeforeunload = () => window.scrollTo(0, 0);
+    // window.onbeforeunload = () => window.scrollTo(0, 0);
     gsap.registerPlugin( ScrollTrigger, scrollTo )
     
     
@@ -40,6 +42,7 @@ window.addEventListener("DOMContentLoaded", function() {
     let isSmallScreen = false
     let isFirstAnimation = true
     let activeMenuColor = "#fff"
+    // 
     const sections = [ homeSection, projectSection, aboutSection, contactSection ]
     const sections_triggers = [ menuLink_home, menuLink_projects, menuLink_about, menuLink_contact ]
     
@@ -48,31 +51,25 @@ window.addEventListener("DOMContentLoaded", function() {
     // Check for small screen     
     window.innerWidth < 769 && ( isSmallScreen = true )
 
-
-
-
-
     /** ------------------------------------------------------------------------ */
-
     //  Home page Scroll Trigger
+
     if ( !isSmallScreen ) {
 
-        gsap.to("#home",{
+        gsap.to(document.body,{
             scrollTrigger: {
                 trigger: "#home",
-                start: "2px top",
-                end: "+=5px",
-                scrub: 1,
+                start: "4px 4px",
                 onEnter: () => {
-                    // DISABLE SCROLL
-                    manageScrollDuringAnimation(500)
+                    // DISABLE SCROLL FOR DURING ANIMATION DURATION
+                    toggleOverflowDuringAnimation(800)
                     // 
                     gsap.to("#home", { x:"100%", ease: "power3.easeInOut", duration: 0.5 });
                     gsap.from(".intro--typo",{ x: "-120%", opacity: 0 })
                 },
                 onLeaveBack: () => {
-                    //  DISABLE SCROLL
-                    manageScrollDuringAnimation(500)  
+                    //  DISABLE SCROLL FOR DURING ANIMATION DURATION
+                    toggleOverflowDuringAnimation(800)  
                     // 
                     gsap.to("#home", { x:"0%", ease: "power3.easeInOut", duration: 0.5 })
                     gsap.from("#home-hero-typo", { opacity: 0 })
@@ -87,8 +84,6 @@ window.addEventListener("DOMContentLoaded", function() {
                 onEnter: () => alert("now")
             }
         })
-
-
 
     }
 
@@ -126,12 +121,12 @@ window.addEventListener("DOMContentLoaded", function() {
 
     const openMenu = () => {
         isClickedMenu = true
+        disableScroll()
         gsap.to('#menu', { left: "100%", duration: 0.5, })
         gsap.to("#navigation--name", { opacity: 1, x: 0, delay: 0.2, })
         gsap.to("#burger-line-1", { x: 10, backgroundColor: "#111" })
         gsap.to("#burger-line-2", { x: 0, backgroundColor: "#111", width: 25 })
         gsap.to("#burger-line-3", { x: -10, backgroundColor: "#111" })
-        disableScroll()
     }
 
     const closeMenu = () => {
@@ -162,7 +157,7 @@ window.addEventListener("DOMContentLoaded", function() {
     form.onclick = event => event.preventDefault()
 
 /* ----------------------------------------------------------------------------- */
-// MENU ITEMS SCROLL TO SECTION ON CLICK
+// SCROLL TO SECTION ON MENU ITEMS CLICK 
 // FOR BIGGER SCREEN DEVICES
 
 
@@ -191,16 +186,16 @@ window.addEventListener("DOMContentLoaded", function() {
                     // CHECK IF MENU-HOME-LINK WAS CLICKED ON HOME SECTION 
                     // IF TRUE DONT PERFORM ANY ACTION AS ALREADY ON HOME SECTION
                     // ELSE PERFORM SCROLL
-                    if (!checkIfHomeSection()){
+                    if (!checkIfHomeSection()) {
                         closeMenu()
-                        scrollToSection( 0)
+                        scrollToSection( 0 )
                     }
                 }
             }
         })
     }
 
-// MENU ITEMS SCROLL TO SECTION ON CLICK
+// SCROLL TO SECTION ON MENU ITEMS CLICK 
 // FOR SMALLER SCREENS
 
 
@@ -225,22 +220,22 @@ window.addEventListener("DOMContentLoaded", function() {
             event.preventDefault()
             _scrollTo( aboutSection )
             setTimeout( () => {
-                _scrollTo( aboutSection)
+                scrollToSection( aboutSection )
             }, 900)
         } 
 
         triggerProjectsSection.onclick = event => {
             event.preventDefault()
             _scrollTo( projectSection )
-            setTimeout( () => {
-                _scrollTo( projectSection )
+            let timeout = setTimeout( () => {
+                scrollToSection( projectSection )
             }, 900)
         }
         triggerContactSection.onclick = event => {
             event.preventDefault()
             _scrollTo( contactSection )
             setTimeout( () => {
-                _scrollTo( contactSection )
+                scrollToSection( contactSection )
             }, 900)
         }
     }
@@ -268,7 +263,7 @@ window.addEventListener("DOMContentLoaded", function() {
     }
 
 /* ----------------------------------------------------------------------------- */
-// SCROLLTOP  BUTTON ADD EVENT LISTENER
+// SCROLL TO TOP  BUTTON ADD EVENT LISTENER
 
     scrollTopButton.onclick = event => {
         event.preventDefault()
@@ -344,7 +339,7 @@ window.addEventListener("DOMContentLoaded", function() {
 
     if ( isSmallScreen ) {
         ScrollTrigger.create({
-            trigger: sectionsArray[1],
+            trigger: sectionsArray[3],
             start: "-30px top",
             onEnter: () => {
                 scrollTopButton.style.visibility = "visible"                
