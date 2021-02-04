@@ -52,6 +52,7 @@ img { display: block;}
     text-transform: uppercase;
     letter-spacing: 0.5em;
     color: blue;
+    opacity: 0;
 }
 
 .ml12 .letter {
