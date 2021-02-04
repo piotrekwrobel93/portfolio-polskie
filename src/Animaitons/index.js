@@ -24,6 +24,7 @@ window.onload = () => {
         translateX: [40,0],
         translateZ: 0,
         opacity: [0,1],
+        visibility: "visible",
         easing: "easeOutExpo",
         duration: 1000,
         delay: (el, i) => 500 + 30 * i

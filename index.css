@@ -58,6 +58,7 @@ img { display: block;}
     display: inline-block;
     line-height: 1em;
     color: #fff;
+    visibility: none;
   }
 
   .spinner {
