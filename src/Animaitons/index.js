@@ -199,18 +199,18 @@ window.onload = () => {
         }
         // CLEAR ERROR OUTPUT
         _error.innerText = ""
-
+        
         // DATA TO BE SEND TO SERVER
         const data = { 
             name: _name,
             email: _email,
             message: _message
         }
-
-
-
+        
+        
+        
         $.find("form").reset()
-
+        
         let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
             method : "POST",
             headers:  {
@@ -223,11 +223,11 @@ window.onload = () => {
         if (res_data.status === 'error') {
             alert("there was error sending your email. Try again later")
         }
-
         gsap.to("#form--alert", { visibility: "visible", top: 0})
         setTimeout( () => {
             gsap.to("#form--alert",{ top: "-400px"})
         },4000)
+        
 
     }
 
