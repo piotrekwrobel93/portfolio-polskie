@@ -217,12 +217,12 @@ window.onload = () => {
             },
             body: JSON.stringify( data )
         })
-
+        console.log( "status: " , response.status )
         let res_data = await response.json()
-        console.log(res_data)
-
-        
-        console.log(_name.length, _email, _message)
+        if (res_data.status === 'error') {
+            console.log("something went bad!")
+        }
+        console.log(res_data)        
     }
 
 /* ----------------------------------------------------------------------------- */
