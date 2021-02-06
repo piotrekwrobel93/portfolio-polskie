@@ -226,6 +226,10 @@ window.onload = () => {
             alert("there was error sending your email. Try again later")
         }
 
+        gsap.to("#form--alert", { visibility: "visible", right: 0})
+        setTimeout( () => {
+            gsap.to("#form--alert",{ visibility: "hidden", right: "-300px"})
+        },2000)
 
     }
 

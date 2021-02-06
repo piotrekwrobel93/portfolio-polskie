@@ -30,6 +30,19 @@ img { display: block;}
 /* ------------------------ GENERAL  ----------------------------*/
 
 
+
+#form--alert {
+    position: fixed;
+    bottom: 50%;
+    right: -300px;
+    padding: 20px;
+    background-color: var(--color1);
+    color: var(--color2);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    visibility: hidden;
+}
+
 #_error {
     text-align: center;
     color: var(--color1);
