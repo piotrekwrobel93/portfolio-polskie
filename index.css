@@ -33,13 +33,22 @@ img { display: block;}
 
 #form--alert {
     position: fixed;
-    bottom: 50%;
-    right: -300px;
-    padding: 20px;
-    background-color: var(--color1);
-    color: var(--color2);
-    border-top-left-radius: 10px;
+    left: 50%;
+    top: -400px;
+    width: 280px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* background-color: var(--color1); */
+    /* color: var(--color2); */
+    background-color: var(--color2);
+    color: #fff;
+    transform: translateX(-50%);
+    z-index: 99999;
     border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     visibility: hidden;
 }
 
@@ -495,6 +504,7 @@ body{
 
 
 /* Media queries */
+
 
 
 @media ( max-width: 769px ) {
