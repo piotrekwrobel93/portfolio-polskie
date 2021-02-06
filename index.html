@@ -292,16 +292,19 @@
         </div>
         <div id="contact" class="trigger">
             <h1>Contact Me<span>.</span></h1>
-            <form>
+            <div>
+                <p id="_error"></p>
+            </div>
+            <form onsubmit="sendEmail()">
                 <label for="name">Name</label>
-                <input type="text" name="name" placeholder="Enter your name" />
+                <input id="_name" type="text" name="name" placeholder="Enter your name" />
                 <label for="email">Email</label>
-                <input type="email" name="email" placeholder="Enter your email" />
+                <input id="_email" type="email" name="email" placeholder="Enter your email" />
                 <label for="message">Message</label>
-                <textarea name="message" cols="30" rows="10"
+                <textarea id="_message" name="message" cols="30" rows="10"
                     placeholder="Enter your message"
                 ></textarea>
-                <input type="submit" value="Send a Message">
+                <input id="_submit" type="submit" value="Send a Message">
             </form>
             <div class="svg--wave-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

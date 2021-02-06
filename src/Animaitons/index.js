@@ -4,12 +4,14 @@ import { manageTabs } from '../helpers.js'
 
 window.onunload = () => window.scrollTo(0,0)
 window.onload = () => {
-    
+
+    // DISABLE SCROLL AT FIRST TO AVOID SCROLL THROUGH ANIMATIONS
     disableScroll()
+    
     gsap.registerPlugin( ScrollTrigger, scrollTo )
 
-    // LOADER ANIMATION
 
+    // LOADER ANIMATION
     let textWrapper = $.find('.ml12');
     textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
     let loaderDiv = $.find('#loader')
@@ -78,7 +80,7 @@ window.onload = () => {
     const projectSection = $.find("#projects")
     const contactSection = $.find("#contact")
     const scrollTopButton = $.find("#scrollTop")
-    const form = $.find("form")
+    const form = $.find("#_submit")
     
     // VARIABLES
     let isClickedMenu = false
@@ -130,14 +132,6 @@ window.onload = () => {
     }
 
 
-    /** ------------------------------------------------------------------------ */
-
-
-
-    /** ------------------------------------------------------------------------ */
-
-
-
 
     /** ------------------------------------------------------------------------ */
 
@@ -186,7 +180,50 @@ window.onload = () => {
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     buttonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
     buttonProject3.onclick = () => openInNewTab('https://google.com')
-    form.onclick = event => event.preventDefault()
+
+    // ON SUMBIT FORM SEND INFO TO SERVER AND FETCH RESPONSE 
+    _submit.onclick =  async event =>  {
+        event.preventDefault()
+        const _name = $.find("#_name").value
+        const _email = $.find("#_email").value
+        const _message = $.find("#_message").value
+        const _error = $.find("#_error")
+
+        if ( _name.length < 3 ) {
+            _error.innerText = "Name must be at least 3 characters long"
+            return
+        }
+        if ( _email.length < 5 || _email.includes("@") === false  || _email.includes(".") === false ) {
+            _error.innerText = "Not valid email adress"
+            return
+        }
+        // CLEAR ERROR OUTPUT
+        _error.innerText = ""
+
+        // DATA TO BE SEND TO SERVER
+        const data = { 
+            name: _name,
+            email: _email,
+            message: _message
+        }
+
+
+        let response = await fetch('http://127.0.0.1:5000/sendMail', {
+            method : "POST",
+            headers:  {
+                
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify( data )
+        })
+
+        let res_data = await response.json()
+        console.log(res_data)
+
+        
+        console.log(_name.length, _email, _message)
+    }
 
 /* ----------------------------------------------------------------------------- */
 // SCROLL TO SECTION ON MENU ITEMS CLICK 
@@ -311,7 +348,7 @@ window.onload = () => {
 
     if ( !isSmallScreen ) {
 
-        let t1 = gsap.timeline({ duration: 0, delay: 0.5})
+        let t1 = gsap.timeline({ duration: 0, delay: 0})
         let t2 = gsap.timeline({ duration: 0, delay: 0, ease: 'power2'})
     
         ScrollTrigger.create({
@@ -320,18 +357,20 @@ window.onload = () => {
             onEnter: self => {
                  t1.to(".burger-line", { backgroundColor: "#fff" })
                  activeMenuColor = "#fff"
-            }
+            },
+            onEnterBack: () =>  t1.to(".burger-line", { backgroundColor: "#fff"})
         })
         ScrollTrigger.create({
             trigger: sectionsArray[1],
             start: "-20px top",
+            end: "+=10px",
             onEnter: self => {
                 t1.to(".burger-line", { backgroundColor: "#000" })
                 t2.to(".navicon", {fill: "#000" })
                 activeMenuColor = "#000"
                 setActiveMenuItem("projects")
             },
-            onLeaveBack: self => {
+            onEnterBack: self => {
                 t1.to(".burger-line", { backgroundColor: "#fff"})
                 t2.to(".navicon", { fill: "#fff"})
                 activeMenuColor = "#fff"
@@ -341,18 +380,20 @@ window.onload = () => {
         ScrollTrigger.create({
             trigger: sectionsArray[2],
             start: "-35px top",
+            end: "+=10px",
             onEnter: self =>  { t1.to(".burger-line", { backgroundColor: "#fff"}); activeMenuColor = "#fff";setActiveMenuItem('about')},
-            onLeaveBack: self => { t1.to(".burger-line", { backgroundColor: "#000"}); activeMenuColor = "#000";setActiveMenuItem('projects')}
         })
         ScrollTrigger.create({
             trigger: '.trigger--wave',
             start: "50px top",
+            end: "+=10px",
             onEnter: self => t2.to(".navicon", { fill: "#fff"}),
-            onLeaveBack: self => t1.to(".navicon", { fill: "#000"})
+            onEnterBack: self => t1.to(".navicon", { fill: "#000"})
         })
         ScrollTrigger.create({
             trigger: sectionsArray[3],
             start: "-30px top",
+            end: "+=10px",
             onEnter: self => {
                 t1.to(".burger-line", { backgroundColor: "#000"})
                 t2.to(".navicon", { fill: "#000"})
@@ -383,3 +424,5 @@ window.onload = () => {
     }
 
 }
+
+
