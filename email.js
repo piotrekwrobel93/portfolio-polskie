@@ -1,8 +1,8 @@
 import express from './node_modules/express'
 import cors from './node_modules/cors/lib'
-import nodemailer from 'nodemailer'
-import { google } from 'googleapis'
-import dotenv from 'dotenv'
+import nodemailer from './node_modules/nodemailer/lib/nodemailer'
+import { google } from './node_modules/googleapis/build/src/'
+import dotenv from './node_modules/dotenv'
 dotenv.config()
 // 
 // 
