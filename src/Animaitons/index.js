@@ -211,18 +211,18 @@ window.onload = () => {
         let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
             method : "POST",
             headers:  {
-                
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
             body: JSON.stringify( data )
         })
-        console.log( "status: " , response.status )
-        let res_data = await response.json()
-        if (res_data.status === 'error') {
-            console.log("something went bad!")
+        const data  = await response.json()
+        if (data.status === 'error') {
+            alert("there was error sending your email. Try again later")
         }
-        console.log(res_data)        
+
+        // CLEAN FORM INPUTS
+        form.reset()
     }
 
 /* ----------------------------------------------------------------------------- */
