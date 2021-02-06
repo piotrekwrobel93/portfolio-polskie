@@ -209,6 +209,10 @@ window.onload = () => {
 
 
 
+        $.find("form").reset()
+
+
+
         // let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
         //     method : "POST",
         //     headers:  {
