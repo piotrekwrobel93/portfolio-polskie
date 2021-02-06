@@ -216,8 +216,8 @@ window.onload = () => {
             },
             body: JSON.stringify( data )
         })
-        const data  = await response.json()
-        if (data.status === 'error') {
+        const res_data  = await response.json()
+        if (res_data.status === 'error') {
             alert("there was error sending your email. Try again later")
         }
 
