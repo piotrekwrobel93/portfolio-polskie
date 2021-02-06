@@ -1,5 +1,5 @@
-import express from 'express'
-import cors from 'cors'
+import express from './node_modules/express'
+import cors from './node_modules/cors/lib'
 import nodemailer from 'nodemailer'
 import { google } from 'googleapis'
 import dotenv from 'dotenv'
