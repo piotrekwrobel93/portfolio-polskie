@@ -208,7 +208,7 @@ window.onload = () => {
         }
 
 
-        let response = await fetch('http://127.0.0.1:5000/sendMail', {
+        let response = await fetch('https://sparrow-test.netlify.app:5000/sendMail', {
             method : "POST",
             headers:  {
                 
