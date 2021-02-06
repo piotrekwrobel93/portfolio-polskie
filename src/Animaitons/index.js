@@ -208,7 +208,7 @@ window.onload = () => {
         }
 
 
-        let response = await fetch('https://sparrow-test.netlify.app:5000/sendMail', {
+        let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
             method : "POST",
             headers:  {
                 
