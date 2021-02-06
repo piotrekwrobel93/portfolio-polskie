@@ -1,8 +1,8 @@
 {
-  "name": "Proper",
+  "name": "Peter Sparrow",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "email.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
