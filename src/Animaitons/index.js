@@ -213,18 +213,18 @@ window.onload = () => {
 
 
 
-        let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
-            method : "POST",
-            headers:  {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify( data )
-        })
-        const res_data  = await response.json()
-        if (res_data.status === 'error') {
-            alert("there was error sending your email. Try again later")
-        }
+        // let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
+        //     method : "POST",
+        //     headers:  {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify( data )
+        // })
+        // const res_data  = await response.json()
+        // if (res_data.status === 'error') {
+        //     alert("there was error sending your email. Try again later")
+        // }
 
         gsap.to("#form--alert", { visibility: "visible", right: 0})
         setTimeout( () => {
