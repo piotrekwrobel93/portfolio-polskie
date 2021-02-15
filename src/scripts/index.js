@@ -171,7 +171,7 @@ window.onload = () => {
     buttonProject2.onclick = () => openInNewTab('https://mens-haircut.netlify.app/')
     buttonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
     mobileButtonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
-    mobileButtonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
+    mobileButtonProject2.onclick = () => openInNewTab('https://mens-haircut.netlify.app/')
     mobileButtonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
     
 
