@@ -1,6 +1,6 @@
 import { $, disableScroll, enableScroll, openInNewTab, _scrollTo, setActiveMenuItem, checkIfHomeSection, scrollFromHomePage, scrollToSection,
-    toggleOverflowDuringAnimation } from '../helpers.js'
-import { manageTabs } from '../helpers.js'
+    toggleOverflowDuringAnimation } from './helpers.js'
+import { manageTabs } from './helpers.js'
 
 window.onunload = () => window.scrollTo(0,0)
 window.onload = () => {
@@ -60,12 +60,14 @@ window.onload = () => {
 
     
     // GET DOM NODES 
-    
     const burgerDiv = $.find('.navigation--burger')
     const rightMenuPanel = $.find(".right-panel")
     const buttonProject1 = $.find("#link--project1")
     const buttonProject2 = $.find("#link--project2")
     const buttonProject3 = $.find("#link--project3")
+    const mobileButtonProject1 = $.find('#link--project1-m')
+    const mobileButtonProject2 = $.find('#link--project2-m')
+    const mobileButtonProject3 = $.find('#link--project3-m')
     const sectionsArray = $.findAll(".trigger")
     const triggerHomeSection = $.find("#home")
     const trigerAboutSection = $.find("#scroll-to--about")
@@ -80,7 +82,6 @@ window.onload = () => {
     const projectSection = $.find("#projects")
     const contactSection = $.find("#contact")
     const scrollTopButton = $.find("#scrollTop")
-    const form = $.find("#_submit")
     
     // VARIABLES
     let isClickedMenu = false
@@ -97,23 +98,22 @@ window.onload = () => {
     window.innerWidth < 769 && ( isSmallScreen = true )
 
     /** ------------------------------------------------------------------------ */
-    //  Home page Scroll Trigger
-
+    //  HOMEPAGE SCROLLTRIGGER ANIMATION
     if ( !isSmallScreen ) {
-
+        // 
         gsap.to(document.body,{
             scrollTrigger: {
                 trigger: "#home",
                 start: "4px 4px",
                 onEnter: () => {
-                    // DISABLE SCROLL FOR DURING ANIMATION DURATION
+                    // DISABLE SCROLL DURING ANIMATION
                     toggleOverflowDuringAnimation(800)
                     // 
                     gsap.to("#home", { x:"100%", ease: "power3.easeInOut", duration: 0.5 });
                     gsap.from(".intro--typo",{ x: "-120%", opacity: 0 })
                 },
                 onLeaveBack: () => {
-                    //  DISABLE SCROLL FOR DURING ANIMATION DURATION
+                    //  DISABLE SCROLL DURING ANIMATION
                     toggleOverflowDuringAnimation(800)  
                     // 
                     gsap.to("#home", { x:"0%", ease: "power3.easeInOut", duration: 0.5 })
@@ -121,14 +121,7 @@ window.onload = () => {
                 }
             },
         })
-
-        gsap.to( ".navigation", {
-            scrollTrigger: {
-                trigger: document.body,
-                start: "bottom center",
-            }
-        })
-
+        
     }
 
 
@@ -159,9 +152,6 @@ window.onload = () => {
         isClickedMenu = false
         gsap.to('#menu', { left: "0%", duration: 0.5, })
         gsap.to("#navigation--name", { opacity: 0, x: -10, delay: 0, })
-        // gsap.to("#burger-line-1", { x: 0, backgroundColor: "#fff" })
-        // gsap.to("#burger-line-2", {x: 0, backgroundColor: "#fff", width: 40 })
-        // gsap.to("#burger-line-3", { x: 0, backgroundColor: "#fff" })
         gsap.to("#burger-line-1", { x: 0, backgroundColor: activeMenuColor })
         gsap.to("#burger-line-2", {x: 0, backgroundColor: activeMenuColor, width: 40 })
         gsap.to("#burger-line-3", { x: 0, backgroundColor: activeMenuColor })
@@ -178,61 +168,17 @@ window.onload = () => {
     rightMenuPanel.onclick = closeMenu
 
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
-    buttonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
-    buttonProject3.onclick = () => openInNewTab('https://google.com')
+    buttonProject2.onclick = () => openInNewTab('https://mens-haircut.netlify.app/')
+    buttonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
+    mobileButtonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
+    mobileButtonProject2.onclick = () => openInNewTab('https://mans-hairdresser.netlify.app')
+    mobileButtonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
+    
 
     // ON SUMBIT FORM SEND INFO TO SERVER AND FETCH RESPONSE 
-    _submit.onclick =  async event =>  {
-        event.preventDefault()
-        const _name = $.find("#_name").value
-        const _email = $.find("#_email").value
-        const _message = $.find("#_message").value
-        const _error = $.find("#_error")
-
-        if ( _name.length < 3 ) {
-            _error.innerText = "Name must be at least 3 characters long"
-            return
-        }
-        if ( _email.length < 5 || _email.includes("@") === false  || _email.includes(".") === false ) {
-            _error.innerText = "Not valid email adress"
-            return
-        }
-        // CLEAR ERROR OUTPUT
-        _error.innerText = ""
-        
-        // DATA TO BE SEND TO SERVER
-        const data = { 
-            name: _name,
-            email: _email,
-            message: _message
-        }
-        
-        
-        
-        $.find("form").reset()
-        
-        let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
-            method : "POST",
-            headers:  {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify( data )
-        })
-        const res_data  = await response.json()
-        if (res_data.status === 'error') {
-            alert("there was error sending your email. Try again later")
-        }
-        gsap.to("#form--alert", { visibility: "visible", top: 0})
-        setTimeout( () => {
-            gsap.to("#form--alert",{ top: "-400px"})
-        },4000)
-        
-
-    }
-
+   
 /* ----------------------------------------------------------------------------- */
-// SCROLL TO SECTION ON MENU ITEMS CLICK 
+// SCROLL TO SECTION ON MENU ITEM CLICK 
 // FOR BIGGER SCREEN DEVICES
 
 
@@ -387,7 +333,16 @@ window.onload = () => {
             trigger: sectionsArray[2],
             start: "-35px top",
             end: "+=10px",
-            onEnter: self =>  { t1.to(".burger-line", { backgroundColor: "#fff"}); activeMenuColor = "#fff";setActiveMenuItem('about')},
+            onEnter: self =>  { 
+                t1.to(".burger-line", { backgroundColor: "#fff"})
+                t2.to(".navicon", {fill: "#fff" })
+                activeMenuColor = "#fff"
+                setActiveMenuItem('about')
+            },
+            onEnterBack: self => { 
+                t1.to(".burger-line", { backgroundColor: "#000"})
+                t2.to(".navicon", {fill: "#000" })
+             }
         })
         ScrollTrigger.create({
             trigger: '.trigger--wave',

@@ -12,10 +12,10 @@ export const $  = {
         }
     },
     css: function ( element , styles ) {
-        if( element && styles  ) {
+        if ( element && styles  ) {
             Object.assign(element.style, styles)
         }
-        if( !element ) return console.log(`couldnt find element  ${element}`)
+        if ( !element ) return false
     },
     log: function ( message ) {
         console.log( message )
@@ -46,10 +46,10 @@ export function manageTabs() {
 
 
 export const openInNewTab = url =>  { 
-    url && window.open( url, '_blank').focus()
+    if (url) {
+        window.open( url, '_blank').focus()
+    }
 }
-
-
 
 export const enableScroll = () => window.onscroll = function(){};
 export const disableScroll = () => {
