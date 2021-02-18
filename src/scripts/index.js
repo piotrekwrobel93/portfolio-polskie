@@ -69,7 +69,6 @@ window.onload = () => {
     const mobileButtonProject2 = $.find('#link--project2-m')
     const mobileButtonProject3 = $.find('#link--project3-m')
     const sectionsArray = $.findAll(".trigger")
-    const triggerHomeSection = $.find("#home")
     const trigerAboutSection = $.find("#scroll-to--about")
     const triggerProjectsSection = $.find("#scroll-to--projects")
     const triggerContactSection = $.find("#scroll-to--contact")
@@ -86,7 +85,6 @@ window.onload = () => {
     // VARIABLES
     let isClickedMenu = false
     let isSmallScreen = false
-    let isFirstAnimation = true
     let activeMenuColor = "#fff"
     // 
     const sections = [ homeSection, projectSection, aboutSection, contactSection ]
@@ -97,6 +95,20 @@ window.onload = () => {
     // Check for small screen     
     window.innerWidth < 769 && ( isSmallScreen = true )
 
+    /** ------------------------------------------------------------------------ */
+
+    // ANIMATING SECTIONS ON SCROLL
+
+    const sectionsToFadeIn = ['.project-m','.tabs', '.about--top', '.about--bottom', 'form']
+
+    sectionsToFadeIn.forEach( section => {
+        $.find(section).style.opacity = 0
+        ScrollTrigger.create({
+            trigger: section,
+            start: "top center",
+            onEnter: () => gsap.to(section, {opacity: 1}),
+        })
+    })
     /** ------------------------------------------------------------------------ */
     //  HOMEPAGE SCROLLTRIGGER ANIMATION
     if ( !isSmallScreen ) {
@@ -110,7 +122,7 @@ window.onload = () => {
                     toggleOverflowDuringAnimation(800)
                     // 
                     gsap.to("#home", { x:"100%", ease: "power3.easeInOut", duration: 0.5 });
-                    gsap.from(".intro--typo",{ x: "-120%", opacity: 0 })
+                    gsap.fromTo(".intro--typo",{ x: "-120%", opacity: 0 }, {x: "0%", opacity: 1})
                 },
                 onLeaveBack: () => {
                     //  DISABLE SCROLL DURING ANIMATION
@@ -118,11 +130,13 @@ window.onload = () => {
                     // 
                     gsap.to("#home", { x:"0%", ease: "power3.easeInOut", duration: 0.5 })
                     gsap.from("#home-hero-typo", { opacity: 0 })
+                    gsap.to(".intro--typo",{ x: "-120%", opacity: 0 })
                 }
             },
         })
         
     }
+
 
 
 
