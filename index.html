@@ -288,7 +288,7 @@
                 <h2>Thank you!</h2>
                 <p>Your email is being sent!</p>
             </div>
-            <form onsubmit="sendEmail()">
+            <form id="_form" onsubmit="sendEmail()">
                 <label for="name">Name</label>
                 <input id="_name" type="text" name="name" placeholder="Enter your name" />
                 <label for="email">Email</label>
@@ -318,6 +318,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
     <script src="./src/scripts/email.js" type="module"></script>
     <script src="./src/scripts/index.js" type="module"></script>
 </body>

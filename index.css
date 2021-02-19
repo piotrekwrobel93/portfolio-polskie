@@ -189,7 +189,7 @@ body{
 #home {
     width: 100vw;
     height: 102vh;
-    position: absolute;
+    /* position: absolute; */
     top: 0; left: 0;
     background-color: var(--color2);
     color: #fff;
