@@ -163,15 +163,14 @@
         margin: 2em 0;
     }
     .about--top--right {
-        width: 85%;
-        /* background-color:green; */
+        width: 90%;
         text-align: left;
         margin-top: 2em !important; 
     }
     .about--top--right > p {
         font-size: 1.2em;
         margin: 0 auto;
-        max-width: 100%;
+        max-width: 90%;
     }
     .about > h1 {
         padding: 1em 0 0 0;
@@ -181,7 +180,7 @@
         line-height: 25px;
     }
     .about--top--right li {
-        width: 90%;
+        width: 80%;
         margin: 0.5rem auto !important;
         color: #fff;
     }
