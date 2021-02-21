@@ -181,15 +181,11 @@
     .about--top--right li {
         width: 80%;
         margin: 0.5rem auto !important;
-        background-color: #333;
-        border-radius: 5px;
+        /* background-color: #333; */
+        /* border-radius: 5px; */
         color: #fff;
-        padding: 1rem;
-        list-style-type: none;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        -ms-border-radius: 5px;
-        -o-border-radius: 5px;
+        /* list-style-type: none; */
+        /* border-bottom: 2px solid #333; */
     }
 }
 
