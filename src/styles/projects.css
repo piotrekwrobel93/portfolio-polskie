@@ -21,7 +21,7 @@
 
 .tabs-wrapper{ 
     width: 100vw;
-    height: 750px;
+    min-height: 800px;
     position: relative;
     overflow-y: scroll;
 }
@@ -31,7 +31,7 @@
     top:30%;
     left:50%;
     transform:translate(-50%,-45%);
-    width:50%;
+    width:60%;
     height: 400px;
 }
 
@@ -72,7 +72,6 @@
 }
 .tabs .tab-body > div {
     width: 100%;
-    height: 80%;
     position: absolute;
     opacity: 0;
     top: -100%;
@@ -91,14 +90,37 @@
 }
 
 .tabs .body--right h1 {
-    color: var(--color1);
     font-weight: 500;
     font-size: 1.2em;
     margin: 20px 0 0px 0;
+    background-color: red;
 }
+
+.body--right h1:nth-child(1) {
+    padding: 1rem 0;
+    background-color: var(--color1);
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+
 .tabs .body--right p {
     color: #333;
-    font-size:15px;
+    font-size: 15px;
+    margin-bottom: 0.5rem;
+}
+
+.tabs .body--right p > span {
+    color: var(--color2);
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
 .tabs .tab-body > div > .body--left {
@@ -109,17 +131,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: green;
 }
 
 .body--left img {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    min-height: 300px !important;
     object-fit: cover;
 }
 
 .body--left > h1  {
-    background-color: #111;
+    background-color: var(--color2);
     padding: 10px 0;
     width: 100%;
     color: #fff;
@@ -139,6 +161,7 @@
     flex-direction: column;
     justify-content: flex-end;
 }
+
 
 
 
@@ -176,7 +199,7 @@
     justify-content: center;
     flex-direction: column;
 }
-.details--section-m{
+.details--section-m {
     width: 100vw;
     height: 100%;
     text-align: left;
@@ -188,15 +211,26 @@
     background-color: #fff;
 }
 
-.details-m  h1{
+.details-m  h1 {
     font-size: 1.2em;
     color: var(--color1);
+    margin-bottom: 1rem;
     font-weight: 500;
 }
 
+
 .details-m  p {
-    color: #111;
+    color: #333;
+    margin: 0.5rem 0;
+}
+
+.details-m  p > span {
+    margin-right: 3px;
+    color: #000;
+    font-weight: 600;
+    text-transform: uppercase;
     margin-bottom: 1em;
+
 }
 
 
@@ -254,6 +288,11 @@
     }
 }
 
+@media (max-width: 1325px) {
+    .tabs {
+        width: 85%;
+    }
+} 
 
 
 @media (max-width: 769px) {
