@@ -164,12 +164,14 @@
     }
     .about--top--right {
         width: 90%;
+        /* background-color:green; */
         text-align: left;
         margin-top: 2em !important; 
     }
     .about--top--right > p {
         font-size: 1.2em;
         margin: 0 auto;
+        max-width: 100%;
     }
     .about > h1 {
         padding: 1em 0 0 0;
@@ -179,13 +181,9 @@
         line-height: 25px;
     }
     .about--top--right li {
-        width: 80%;
+        width: 90%;
         margin: 0.5rem auto !important;
-        /* background-color: #333; */
-        /* border-radius: 5px; */
         color: #fff;
-        /* list-style-type: none; */
-        /* border-bottom: 2px solid #333; */
     }
 }
 
