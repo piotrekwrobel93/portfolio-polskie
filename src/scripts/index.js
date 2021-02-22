@@ -109,35 +109,7 @@ window.onload = () => {
             onEnter: () => gsap.to(section, {opacity: 1}),
         })
     })
-    /** ------------------------------------------------------------------------ */
-    //  HOMEPAGE SCROLLTRIGGER ANIMATION
-    // if ( !isSmallScreen ) {
-        // 
-        // gsap.to(document.body,{
-        //     scrollTrigger: {
-        //         trigger: "#home",
-        //         start: "4px 4px",
-        //         onEnter: () => {
-        //             // DISABLE SCROLL DURING ANIMATION
-        //             toggleOverflowDuringAnimation(800)
-        //             // 
-        //             gsap.to("#home", { x:"100%", ease: "power3.easeInOut", duration: 0.5 });
-        //             gsap.fromTo(".intro--typo",{ x: "-120%", opacity: 0 }, {x: "0%", opacity: 1})
-        //         },
-        //         onLeaveBack: () => {
-        //             //  DISABLE SCROLL DURING ANIMATION
-        //             toggleOverflowDuringAnimation(800)  
-        //             // 
-        //             gsap.to("#home", { x:"0%", ease: "power3.easeInOut", duration: 0.5 })
-        //             gsap.from("#home-hero-typo", { opacity: 0 })
-        //             gsap.to(".intro--typo",{ x: "-120%", opacity: 0 })
-        //         }
-        //     },
-        // })
-        
-    // }
-
-
+  
 
 
     /** ------------------------------------------------------------------------ */
@@ -195,56 +167,16 @@ window.onload = () => {
 // SCROLL TO SECTION ON MENU ITEM CLICK 
 // FOR BIGGER SCREEN DEVICES
 
-
-    // if (!isSmallScreen) {
-        sections_triggers.forEach( (section, index ) => {
-            // ADD EVENT ON CLICK
-            section.onclick = event => {
-                // CHECK IF SECTION ISNT HOME WHICH HAS INDEX OF 0 
-                // if (index > 0) {
-                //     event.preventDefault()
-                //     // CHECKS IF EVENT WAS CALLED FROM HOMESCREEN 
-                //     if (checkIfHomeSection()) {
-                //         // CLOSE MENU AND AND SPECIAL METHOD HANDLING SCROLL FROM HOMESCREEN 
-                //         closeMenu()
-                //         scrollFromHomePage( sections[index])
-                //     }
-                //     else {
-                //         // OTHERWISE JUST CLOSE MNEU && SCROLL TO SECTION WITH GSAP SCROLL TO PLUGIN 
-                //         closeMenu()
-                //         scrollToSection( sections[index])
-                //     }
-                    event.preventDefault()
-                    closeMenu()
-                    scrollToSection( sections[index])
-                }
-                // IF EVENT WAS CALLED FROM HOMESCREEN HANDLE IT DIFFERENT WAY
-                // if (index === 0) {
-                //     event.preventDefault()
-                //     // CHECK IF MENU-HOME-LINK WAS CLICKED ON HOME SECTION 
-                //     // IF TRUE DONT PERFORM ANY ACTION AS ALREADY ON HOME SECTION
-                //     // ELSE PERFORM SCROLL
-                //     if (!checkIfHomeSection()) {
-                //         closeMenu()
-                //         scrollToSection( 0 )
-                //     }
-                // }
-            })
-    // }
-
+    sections_triggers.forEach( (section, index ) => {
+        // ADD EVENT ON CLICK
+        section.onclick = event => {
+                event.preventDefault()
+                closeMenu()
+                scrollToSection( sections[index])
+            }
+        })
 // SCROLL TO SECTION ON MENU ITEMS CLICK 
 // FOR SMALLER SCREENS
-
-
-    // if ( isSmallScreen ) {
-    //     sections_triggers.forEach( (section, index) => {
-    //         section.onclick = ( event => {
-    //             event.preventDefault()
-    //             closeMenu()
-    //             scrollToSection( sections[index] )
-    //         })
-    //     })
-    // }
 
 /* ----------------------------------------------------------------------------- */
 // HOMEPAGE MINI-MENU ITEMS
@@ -298,6 +230,25 @@ window.onload = () => {
         }
 
     }
+
+
+
+/* ----------------------------------------------------------------------------- */
+// INTRO SECTION ANIMATION
+
+ScrollTrigger.create({
+    trigger: '.intro--typo',
+    start: "top bottom",
+    onEnter: () => {
+        gsap.from('.intro--typo', {
+        opacity: 0,
+        y: 100,
+        duration: 1
+        })
+    }
+})
+
+
 
 /* ----------------------------------------------------------------------------- */
 // SCROLL TO TOP  BUTTON ADD EVENT LISTENER
