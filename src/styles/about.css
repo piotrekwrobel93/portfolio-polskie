@@ -104,6 +104,7 @@
     font-size: 1rem;
     list-style-type: none;
     line-height: 30px;
+    padding: 10px 0;
 }
 
 .about--top--right li:before {
@@ -138,9 +139,7 @@
 }   
 
 .about--first-word {
-    /*color: var(--color1) !important;
-    *//*color: #777 !important;
-    */display: inline-block !important;
+    display: inline-block !important;
     text-transform: none !important;
     font-size: 1.5rem;
     background-color: #999;
@@ -170,6 +169,16 @@
     .about--top--right {
         width: 40%;
         font-size: 0.8em;
+    }
+    .about--top {
+    }
+    .about--top--left {
+        /* width: 300px; */
+        margin-left: 50px;
+    }
+    .about--top--right {
+        width: 100%;
+        padding: 20px;
     }
 }
 
@@ -206,7 +215,7 @@
         text-align: left;
         color: #fff;
         border-bottom: 1px solid #999;
-        padding:20px 0;
+        padding: 20px 0;
     }
     .about--first-word {
         background-color:transparent;
