@@ -238,10 +238,9 @@ window.onload = () => {
 
 ScrollTrigger.create({
     trigger: '.intro--typo',
-    start: "top bottom",
+    start: "top center",
     onEnter: () => gsap.to('.intro--typo', {
         opacity: 1,
-        top: 0,
     })
 })
 
