@@ -14,6 +14,7 @@
     font-size: 1em;
     width: 55%;
     line-height: 60px;
+    opacity: 0;
 }
 
 .intro--typo > span {

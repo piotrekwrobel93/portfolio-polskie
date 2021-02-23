@@ -240,9 +240,12 @@ ScrollTrigger.create({
     trigger: '.intro--typo',
     start: "top bottom",
     onEnter: () => {
-        gsap.from('.intro--typo', {
+        gsap.fromTo('.intro--typo', {
         opacity: 0,
         y: 100,
+    }, {
+        opacity: 1,
+        y: 0,
         duration: 1
         })
     }
