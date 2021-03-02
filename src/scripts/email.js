@@ -37,7 +37,7 @@ _submit.onclick =  async event =>  {
     
     // SENDING REQUEST TO SERVER TO HANDLE SENDMAIL FUNCTION  
     
-    let response = await fetch('https://quiet-falls-61235.herokuapp.com/sendMail', {
+    let response = await fetch('https://my-email-serverr.herokuapp.com/sendMail', {
         // SET-UP REQUEST
         method : "POST",
         headers:  {

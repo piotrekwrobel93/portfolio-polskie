@@ -95,7 +95,6 @@
 .about--top--right > p > span {
     color: #999;
     text-transform: uppercase;
-    display: block;
     margin: 1rem 0;
 }
 
@@ -137,21 +136,6 @@
     justify-content: center;
     flex-direction: column;
 }   
-
-.about--first-word {
-    display: inline-block !important;
-    text-transform: none !important;
-    font-size: 1.5rem;
-    background-color: #999;
-    color: #000 !important;
-    padding: 10px 20px;
-    margin-right: 5px !important;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-}
 
 
 .about--bottom > div > p:nth-child(odd) {
