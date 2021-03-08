@@ -321,9 +321,19 @@ body{
 }
 
 .navigation--icons > .icon {
+    cursor: pointer;
     fill: #fff;
     margin: 1em 10px 0 10px;
+    transition: fill 0.2s ease;
+    -webkit-transition: fill 0.2s ease;
+    -moz-transition: fill 0.2s ease;
+    -ms-transition: fill 0.2s ease;
+    -o-transition: fill 0.2s ease;
 }
+
+.navigation--icons > .icon:nth-child(1):hover { fill: #333; }
+.navigation--icons > .icon:nth-child(2):hover { fill: var(--color1); }
+.navigation--icons > .icon:nth-child(3):hover { fill: #2867B2; }
 
 
 

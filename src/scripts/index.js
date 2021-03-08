@@ -261,6 +261,21 @@ ScrollTrigger.create({
 // FOR BIGGER DEVICES
 
 
+    // NAVICONS -- SOCIAL ICONS -- REDIRECT ON CLICK
+
+    $.findAll('.navicon')[0].onclick = event => {
+        event.preventDefault()
+        openInNewTab("https://github.com/piotrekwrobel93")
+    }
+    $.findAll('.navicon')[1].onclick = event => {
+        event.preventDefault()
+        openInNewTab("https://gitlab.com/piotrekwrobel93")
+    }
+    $.findAll('.navicon')[2].onclick = event => {
+        event.preventDefault()
+        openInNewTab("https://linkedin.com/in/peter-sparrow")
+    }
+
     if ( !isSmallScreen ) {
 
         let t1 = gsap.timeline({ duration: 0, delay: 0})
