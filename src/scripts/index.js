@@ -65,9 +65,11 @@ window.onload = () => {
     const buttonProject1 = $.find("#link--project1")
     const buttonProject2 = $.find("#link--project2")
     const buttonProject3 = $.find("#link--project3")
+    const buttonProject4 = $.find("#link--project4")
     const mobileButtonProject1 = $.find('#link--project1-m')
     const mobileButtonProject2 = $.find('#link--project2-m')
     const mobileButtonProject3 = $.find('#link--project3-m')
+    const mobileButtonProject4 = $.find('#link--project4-m')
     const sectionsArray = $.findAll(".trigger")
     const trigerAboutSection = $.find("#scroll-to--about")
     const triggerProjectsSection = $.find("#scroll-to--projects")
@@ -156,9 +158,11 @@ window.onload = () => {
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     buttonProject2.onclick = () => openInNewTab('https://mens-haircut.netlify.app/')
     buttonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
+    buttonProject4.onclick = () => openInNewTab('https://eco-appi.netlify.app/')
     mobileButtonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     mobileButtonProject2.onclick = () => openInNewTab('https://mens-haircut.netlify.app')
     mobileButtonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
+    mobileButtonProject4.onclick = () => openInNewTab('https://eco-appi.netlify.app/')
     
 
     // ON SUMBIT FORM SEND INFO TO SERVER AND FETCH RESPONSE 
