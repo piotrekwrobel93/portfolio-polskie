@@ -19,7 +19,7 @@
 }
 
 
-.tabs-wrapper{ 
+.tabs-wrapper { 
     width: 100vw;
     min-height: 800px;
     position: relative;
@@ -67,9 +67,14 @@
     position:relative;
     background:#fff;
     height: 130%;
-    overflow:hidden;
+    /* overflow:hidden; */
     background-color: transparent;    
 }
+
+.eco-img {
+    max-height: 350px
+}
+
 .tabs .tab-body > div {
     width: 100%;
     position: absolute;
@@ -86,7 +91,7 @@
 .tabs .tab-body > div.active {
     transform:translateY(0px);
     top: 10%;
-    opacity:1;
+    opacity: 1;
 }
 
 .tabs .body--right h1 {
@@ -152,7 +157,7 @@
     height: 100%;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: flex-end;
 }
 
 .body--right--wrapper {
