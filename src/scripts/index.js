@@ -157,11 +157,11 @@ window.onload = () => {
 
     buttonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     buttonProject2.onclick = () => openInNewTab('https://mens-haircut.netlify.app/')
-    buttonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
+    buttonProject3.onclick = () => openInNewTab('https://stickerit.co')
     buttonProject4.onclick = () => openInNewTab('https://eco-appi.netlify.app/')
     mobileButtonProject1.onclick = () => openInNewTab('https://catering-website.vercel.app')
     mobileButtonProject2.onclick = () => openInNewTab('https://mens-haircut.netlify.app')
-    mobileButtonProject3.onclick = () => openInNewTab('https://finance-manager-eee74.web.app')
+    mobileButtonProject3.onclick = () => openInNewTab('https://stickerit.co')
     mobileButtonProject4.onclick = () => openInNewTab('https://eco-appi.netlify.app/')
     
 
